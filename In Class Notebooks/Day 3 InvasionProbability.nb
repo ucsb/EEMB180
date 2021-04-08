@@ -1,0 +1,289 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     11259,        281]
+NotebookOptionsPosition[      8829,        239]
+NotebookOutlinePosition[      9254,        256]
+CellTagsIndexPosition[      9211,        253]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["In class worksheet 4/9/2020", "Title",
+ CellChangeTimes->{{3.763813526431818*^9, 3.763813538333893*^9}, 
+   3.7954383319804897`*^9, {3.795438394329562*^9, 
+   3.7954383943584003`*^9}},ExpressionUUID->"06e293bf-2534-403a-adcb-\
+98544e5d2d31"],
+
+Cell[CellGroupData[{
+
+Cell["Risk of extinction for rare invading populations", "Section",
+ CellChangeTimes->{{3.575203055822695*^9, 3.575203118753577*^9}, {
+  3.6681881711123657`*^9, 
+  3.668188190215109*^9}},ExpressionUUID->"33e75696-bd55-4694-9c0d-\
+616e13e740b4"],
+
+Cell[CellGroupData[{
+
+Cell["Calculations from class:", "Subsection",
+ CellChangeTimes->{{3.575203162651943*^9, 3.5752031715998774`*^9}, {
+  3.606148373755657*^9, 3.60614837669942*^9}, {3.668188200511747*^9, 
+  3.66818820359048*^9}},ExpressionUUID->"d3a7bce6-e46d-44df-b023-\
+def8972b38a5"],
+
+Cell["\<\
+In the lecture I derived a simple model to track the number of individuals \
+invading a novel habitat. This model assumes that each individual has a fixed \
+chance of dying during each time step and that each living individual has a \
+fixed probability of reproducing. We assumed that there is no regulation of \
+these processes at the population level.\
+\>", "Text",
+ CellChangeTimes->{
+  3.668188215384488*^9, {3.7954383590162354`*^9, 
+   3.795438364043701*^9}},ExpressionUUID->"9607b6b4-5b19-43b6-bb9b-\
+b8eacc89b7fb"],
+
+Cell["\<\
+We assumed that each individual had the same probability of dying (d) and the \
+same probability of producing a single additional offspring (b). This led to \
+an equation for the probability of extinction when there is a single \
+individual in the initial population:\
+\>", "Text",
+ CellChangeTimes->{{3.668188225790711*^9, 3.668188226134918*^9}, {
+  3.668188290118391*^9, 3.668188301149274*^9}, {3.668188338215231*^9, 
+  3.668188372437505*^9}, {3.7954384123758802`*^9, 
+  3.795438433443281*^9}},ExpressionUUID->"9b7cdae5-8aeb-4f8f-afab-\
+40c6e51c60c3"],
+
+Cell[BoxData[
+ RowBox[{"pE1", "\[Equal]", 
+  RowBox[{"d", " ", "+", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "b"}], ")"}], "*", "pE1"}], " ", "+", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}], 
+    RowBox[{"(", "b", ")"}], " ", "pE2"}]}]}]], "Input",
+ CellChangeTimes->{{3.66818838300702*^9, 3.668188409301179*^9}, {
+   3.763813576480502*^9, 3.76381357697538*^9}, 3.76381364081353*^9},
+ CellLabel->"In[64]:=",ExpressionUUID->"1e3e9092-9923-4f18-bb74-af90945c564b"],
+
+Cell["\<\
+We also noted that if two identical individuals are in the population, the \
+probability that the population goes extinct in the future is the same as if \
+two populations were founded with a single individual each, meaning that \
+\>", "Text",
+ CellChangeTimes->{{3.668188412020735*^9, 3.668188453428049*^9}, {
+  3.7954384456180983`*^9, 
+  3.795438446588077*^9}},ExpressionUUID->"9bd8bd31-76b3-4296-a038-\
+61a8ac081b4b"],
+
+Cell[BoxData[
+ RowBox[{"pE2", "\[Equal]", 
+  RowBox[{"pE1", "^", "2"}]}]], "Input",
+ CellChangeTimes->{{3.6681884550599527`*^9, 3.668188460148272*^9}, 
+   3.763813577883119*^9, 3.763813641784816*^9},
+ CellLabel->"In[65]:=",ExpressionUUID->"887d8e91-6e77-4bd6-91d5-5b25a66905a3"],
+
+Cell["So our full equation for the probability of extinction is: ", "Text",
+ CellChangeTimes->{{3.668188464147366*^9, 3.6681884674282312`*^9}, {
+  3.668188504637158*^9, 
+  3.668188511019339*^9}},ExpressionUUID->"1c7c45f2-5761-43a2-ad37-\
+266ca21def3b"],
+
+Cell[BoxData[
+ RowBox[{"pE1", "\[Equal]", 
+  RowBox[{"d", " ", "+", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "b"}], ")"}], "*", "pE1"}], " ", "+", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}], 
+    RowBox[{"(", "b", ")"}], " ", 
+    RowBox[{"pE1", "^", "2"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.668188517363495*^9, 3.6681885179230824`*^9}, {
+  3.763813578976907*^9, 3.763813582718501*^9}},
+ CellLabel->"In[66]:=",ExpressionUUID->"85f280c0-9ff6-4b5d-a119-8514a4576751"],
+
+Cell["\<\
+Use the Solve command to find the solution of this equation in the next cell:\
+\
+\>", "Text",
+ CellChangeTimes->{{3.6681885201791697`*^9, 3.66818853365954*^9}, {
+  3.763813670949011*^9, 3.763813707650321*^9}, {3.7954383214769173`*^9, 
+  3.79543832283447*^9}},ExpressionUUID->"59247b8e-9803-42aa-90d7-\
+b80ee4082290"],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.6681885371575737`*^9, 3.668188542125091*^9}, {
+   3.763813584189149*^9, 3.763813586133157*^9}, 3.7638136973408127`*^9},
+ CellLabel->"In[67]:=",ExpressionUUID->"bcc94cda-faf2-4d7f-bd53-bde4d6c1b2eb"],
+
+Cell["\<\
+As we noted in class, there are two solutions to this equation. One is that \
+the probability of extinction is 1, the other is \
+\>", "Text",
+ CellChangeTimes->{{3.668188545314444*^9, 
+  3.668188580986165*^9}},ExpressionUUID->"8bbbd7a5-9df0-48c3-ac2a-\
+db9df3e776dc"],
+
+Cell[BoxData[
+ RowBox[{"pE1", ":=", 
+  RowBox[{"d", "/", 
+   RowBox[{"(", 
+    RowBox[{"b", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", "d"}], ")"}]}], ")"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Here", " ", "we", " ", "use", " ", "the"}], " ", ":=", " ", 
+     RowBox[{
+     "so", " ", "that", " ", "we", " ", "can", " ", "treat", " ", "pE1", " ", 
+      "as", " ", "a", " ", "function"}]}], " ", "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.668188570629529*^9, 3.6681886151388206`*^9}, {
+  3.763813588144732*^9, 3.763813590535439*^9}},
+ CellLabel->"In[68]:=",ExpressionUUID->"24284be3-32aa-4a74-89b9-74d74300d9f1"],
+
+Cell["\<\
+We can use another type of plot to visualize the solution of this. The grey \
+region represents parameter combinations that make the probability of \
+extinction less than 1 (meaning that the species may invade).\
+\>", "Text",
+ CellChangeTimes->{{3.763813752020245*^9, 3.763813784341007*^9}, {
+  3.763813905675116*^9, 
+  3.763813939590139*^9}},ExpressionUUID->"17d7c54e-29b9-48d9-b81b-\
+411a7e37f241"],
+
+Cell[BoxData[
+ RowBox[{"RegionPlot", "[", 
+  RowBox[{
+   RowBox[{"pE1", "<", "1"}], " ", ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"d", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+   RowBox[{"FrameLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Probability of death\>\"", ",", "\"\<Probability of birth\>\""}], 
+     "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7638138200954657`*^9, 3.763813895750922*^9}, {
+  3.79543848945619*^9, 3.795438506487783*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"020728b5-eeef-4535-aba6-0f207ba7ac26"],
+
+Cell["\<\
+We can also plot how extinction probability depends on the parameters by \
+holding one parameter constant and varying the other. Try to plot this, using \
+the Min[] function to make sure that extinction probability is not bigger \
+than 1. \
+\>", "Text",
+ CellChangeTimes->{{3.795438732470522*^9, 3.795438773627496*^9}, {
+  3.795438812309952*^9, 
+  3.795438839515813*^9}},ExpressionUUID->"9ca3495c-ca6b-45fc-8519-\
+fd7c4f3df248"],
+
+Cell["For example:", "Text",
+ CellChangeTimes->{{3.795438844760962*^9, 
+  3.795438846866313*^9}},ExpressionUUID->"37c2efef-75b0-45fb-8ef6-\
+db487ced2f7a"],
+
+Cell[BoxData[
+ RowBox[{"Min", "[", 
+  RowBox[{"1", ",", "1.5"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7954388481674757`*^9, 3.795438851704672*^9}},
+ CellLabel->"In[78]:=",ExpressionUUID->"37e260cd-f146-4862-80df-b9015e19ebbe"],
+
+Cell["Let\[CloseCurlyQuote]s fix d=0.15. ", "Text",
+ CellChangeTimes->{{3.795438855455386*^9, 
+  3.79543890663811*^9}},ExpressionUUID->"ad60ea6d-15b0-4f03-b963-\
+ec7e30411c5e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Clear", "[", 
+    RowBox[{"b", ",", "d"}], "]"}], ";", 
+   RowBox[{"d", "=", ".15"}], ";"}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.795438883389596*^9, 3.795438885691869*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"dac71d78-e48a-4bd0-a531-cc53310b7413"],
+
+Cell["\<\
+Now make a graph of extinction probability as a function of the other \
+parameter, b. Make sure to label the axes.\
+\>", "Text",
+ CellChangeTimes->{{3.795438910569704*^9, 
+  3.795438925043729*^9}},ExpressionUUID->"30ac1fd0-29cc-4d78-9a3e-\
+21897666d61f"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 905},
+WindowMargins->{{Automatic, 147}, {25, Automatic}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (March 18, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"59b378b3-bced-4c45-afca-2ae26eb8f935"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 247, 4, 238, "Title",ExpressionUUID->"06e293bf-2534-403a-adcb-98544e5d2d31"],
+Cell[CellGroupData[{
+Cell[852, 30, 244, 4, 158, "Section",ExpressionUUID->"33e75696-bd55-4694-9c0d-616e13e740b4"],
+Cell[CellGroupData[{
+Cell[1121, 38, 267, 4, 81, "Subsection",ExpressionUUID->"d3a7bce6-e46d-44df-b023-def8972b38a5"],
+Cell[1391, 44, 531, 10, 226, "Text",ExpressionUUID->"9607b6b4-5b19-43b6-bb9b-b8eacc89b7fb"],
+Cell[1925, 56, 563, 10, 157, "Text",ExpressionUUID->"9b7cdae5-8aeb-4f8f-afab-40c6e51c60c3"],
+Cell[2491, 68, 565, 14, 46, "Input",ExpressionUUID->"1e3e9092-9923-4f18-bb74-af90945c564b"],
+Cell[3059, 84, 430, 8, 157, "Text",ExpressionUUID->"9bd8bd31-76b3-4296-a038-61a8ac081b4b"],
+Cell[3492, 94, 278, 5, 46, "Input",ExpressionUUID->"887d8e91-6e77-4bd6-91d5-5b25a66905a3"],
+Cell[3773, 101, 252, 4, 53, "Text",ExpressionUUID->"1c7c45f2-5761-43a2-ad37-266ca21def3b"],
+Cell[4028, 107, 572, 15, 46, "Input",ExpressionUUID->"85f280c0-9ff6-4b5d-a119-8514a4576751"],
+Cell[4603, 124, 326, 7, 88, "Text",ExpressionUUID->"59247b8e-9803-42aa-90d7-b80ee4082290"],
+Cell[4932, 133, 274, 4, 46, "Input",ExpressionUUID->"bcc94cda-faf2-4d7f-bd53-bde4d6c1b2eb"],
+Cell[5209, 139, 277, 6, 88, "Text",ExpressionUUID->"8bbbd7a5-9df0-48c3-ac2a-db9df3e776dc"],
+Cell[5489, 147, 629, 15, 109, "Input",ExpressionUUID->"24284be3-32aa-4a74-89b9-74d74300d9f1"],
+Cell[6121, 164, 410, 8, 157, "Text",ExpressionUUID->"17d7c54e-29b9-48d9-b81b-411a7e37f241"],
+Cell[6534, 174, 658, 16, 109, "Input",ExpressionUUID->"020728b5-eeef-4535-aba6-0f207ba7ac26"],
+Cell[7195, 192, 438, 9, 157, "Text",ExpressionUUID->"9ca3495c-ca6b-45fc-8519-fd7c4f3df248"],
+Cell[7636, 203, 154, 3, 53, "Text",ExpressionUUID->"37c2efef-75b0-45fb-8ef6-db487ced2f7a"],
+Cell[7793, 208, 228, 4, 46, "Input",ExpressionUUID->"37e260cd-f146-4862-80df-b9015e19ebbe"],
+Cell[8024, 214, 176, 3, 53, "Text",ExpressionUUID->"ad60ea6d-15b0-4f03-b963-ec7e30411c5e"],
+Cell[8203, 219, 319, 7, 78, "Input",ExpressionUUID->"dac71d78-e48a-4bd0-a531-cc53310b7413"],
+Cell[8525, 228, 264, 6, 88, "Text",ExpressionUUID->"30ac1fd0-29cc-4d78-9a3e-21897666d61f"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
