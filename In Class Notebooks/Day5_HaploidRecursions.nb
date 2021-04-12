@@ -1,0 +1,479 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16977,        471]
+NotebookOptionsPosition[     14139,        425]
+NotebookOutlinePosition[     14566,        442]
+CellTagsIndexPosition[     14523,        439]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Population genetic recursions", "Section",
+ CellChangeTimes->{{3.575203055822695*^9, 
+  3.575203118753577*^9}},ExpressionUUID->"301a4e49-f6a0-4a37-9b44-\
+a5c6c3986a3c"],
+
+Cell[CellGroupData[{
+
+Cell["Haploid model of selection", "Subsection",
+ CellChangeTimes->{{3.575203162651943*^9, 3.5752031715998774`*^9}, {
+  3.606148373755657*^9, 
+  3.60614837669942*^9}},ExpressionUUID->"f146c082-7811-4205-9bad-\
+42efe1c71f24"],
+
+Cell[CellGroupData[{
+
+Cell["Reference", "Subsubsection",
+ CellChangeTimes->{{3.732382056475645*^9, 
+  3.732382059979656*^9}},ExpressionUUID->"74787b8e-2bfe-4401-961d-\
+1455756c9497"],
+
+Cell[TextData[{
+ StyleBox["p\t",
+  FontWeight->"Bold"],
+ "-- proportion (frequency) of allele ",
+ StyleBox["A\n",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SubscriptBox["p", "t"],
+    FontWeight->"Bold"], TraditionalForm]],ExpressionUUID->
+  "344d62f3-cf31-4b6c-8d18-3fd231d6d228"],
+ "\t-- p at time t. Can also be written as ",
+ StyleBox["p(t)",
+  FontSlant->"Italic"],
+ "\n",
+ StyleBox["pup\t",
+  FontWeight->"Bold"],
+ "-- \[OpenCurlyDoubleQuote]",
+ StyleBox["p",
+  FontSlant->"Italic"],
+ " update,\[CloseCurlyDoubleQuote] the update function for ",
+ StyleBox["p",
+  FontSlant->"Italic"],
+ " \n",
+ StyleBox["wA",
+  FontWeight->"Bold"],
+ " \t-- fitness of genotype ",
+ StyleBox["A ",
+  FontSlant->"Italic"],
+ " \n",
+ StyleBox["wa",
+  FontWeight->"Bold"],
+ " \t-- fitness of genotype ",
+ StyleBox["a  \n",
+  FontSlant->"Italic"]
+}], "Text",
+ CellChangeTimes->{{3.7323776863424516`*^9, 3.7323777341596937`*^9}, {
+   3.7323790590419135`*^9, 3.7323791406119013`*^9}, {3.732379211720003*^9, 
+   3.732379221060991*^9}, 3.732379329414486*^9, {3.732379362134884*^9, 
+   3.7323794543356647`*^9}, {3.7323794918025227`*^9, 
+   3.7323795710413246`*^9}, {3.7323807333778305`*^9, 3.732380776338324*^9}, {
+   3.732381011430256*^9, 3.7323810560549493`*^9}, {3.7323841653538885`*^9, 
+   3.732384171625685*^9}, {3.7323847825321317`*^9, 3.7323847836025777`*^9}, {
+   3.732390596900259*^9, 3.732390597090434*^9}, {3.7957975622422667`*^9, 
+   3.795797564436499*^9}},ExpressionUUID->"b78fa801-cc88-419b-ae97-\
+316286df05ef"],
+
+Cell[TextData[{
+ "Below is the \[OpenCurlyDoubleQuote]",
+ StyleBox["p",
+  FontSlant->"Italic"],
+ " update\[CloseCurlyDoubleQuote] function. It takes in a ",
+ StyleBox["p",
+  FontSlant->"Italic"],
+ " and outputs the ",
+ StyleBox["p",
+  FontSlant->"Italic"],
+ " for the next timestep. This function is essentially our ",
+ StyleBox["p(t+1) = ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   FractionBox[
+    RowBox[{
+     RowBox[{"p", "(", "t", ")"}], " ", "W"}], 
+    RowBox[{
+     RowBox[{
+      RowBox[{"p", "(", "t", ")"}], " ", "W"}], " ", "+", " ", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", " ", 
+       RowBox[{"p", "(", "t", ")"}]}], ")"}]}]], TraditionalForm]],
+  ExpressionUUID->"9e37cff8-13ad-48f6-bbcb-bbcebb087dc2"],
+ "function from class, where ",
+ StyleBox["W = ",
+  FontSlant->"Italic"],
+ Cell[BoxData[
+  FormBox[
+   FractionBox["wA", "wa"], TraditionalForm]],ExpressionUUID->
+  "dba1de03-3214-420f-b07e-11a390aeae83"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.732380442757064*^9, 3.7323804953422794`*^9}, {
+   3.732380545774905*^9, 3.732380689937807*^9}, 
+   3.7323807975471687`*^9},ExpressionUUID->"c9a74003-022d-4c82-b73f-\
+9d440aa776e1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pup", "[", "p_", "]"}], ":=", 
+  RowBox[{"p", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"wA", "/", "wa"}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"p", " ", 
+       RowBox[{"(", 
+        RowBox[{"wA", "/", "wa"}], ")"}]}], "+", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "p"}], ")"}]}], ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.575203132464299*^9, 3.575203183680428*^9}, {
+   3.606148423434402*^9, 3.606148445059416*^9}, {3.763981876463262*^9, 
+   3.763981880520705*^9}, {3.763982000932633*^9, 3.763982002309143*^9}, 
+   3.763982038575186*^9, 3.763982077460346*^9},
+ CellLabel->"In[76]:=",ExpressionUUID->"15ae832d-9c8a-4f31-97fd-bf20b9413fa5"],
+
+Cell["\<\
+We can use Mathematica to show how applying the recursion twice can be \
+simplified.\
+\>", "Text",
+ CellChangeTimes->{{3.7639822663793592`*^9, 
+  3.7639822827357817`*^9}},ExpressionUUID->"461df2b5-13ab-4d2b-a12b-\
+54043e2ea9d8"],
+
+Cell[BoxData[
+ RowBox[{"pup", "[", "p0", "]"}]], "Input",
+ CellChangeTimes->{{3.795871046559278*^9, 3.795871050889518*^9}, {
+  3.795872292592526*^9, 3.79587229940464*^9}, {3.795873489577244*^9, 
+  3.79587349789788*^9}, {3.795874647848518*^9, 3.795874663492297*^9}},
+ CellLabel->"In[77]:=",ExpressionUUID->"daa2e441-c8c0-4ff8-b4b5-6bd02af2cf65"],
+
+Cell[BoxData[
+ RowBox[{"pup", "[", 
+  RowBox[{"pup", "[", "p0", "]"}], "]"}]], "Input",
+ CellLabel->"In[78]:=",ExpressionUUID->"82566359-d3fa-44f3-9559-7aba233bac66"],
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{"pup", "[", 
+   RowBox[{"pup", "[", "p0", "]"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6061485015249*^9, 3.60614850336808*^9}, 
+   3.6061487800375957`*^9, {3.7323827556871505`*^9, 3.7323827846954703`*^9}, {
+   3.732382824416309*^9, 3.7323828363832846`*^9}, {3.763981642322339*^9, 
+   3.763981670965281*^9}, {3.795871126012436*^9, 3.79587112889192*^9}, {
+   3.795872323149645*^9, 3.795872324856797*^9}, {3.795872391256145*^9, 
+   3.79587239357474*^9}, {3.795873503807845*^9, 3.795873508436749*^9}, {
+   3.795873610289315*^9, 3.795873612846694*^9}, {3.7958746308613787`*^9, 
+   3.7958746323746634`*^9}, {3.795874742081799*^9, 3.795874745168056*^9}, {
+   3.795955264261074*^9, 3.795955266559957*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"2674f847-9e30-45e2-8f90-11b1b46c01ab"],
+
+Cell[TextData[{
+ "We are also interested in how ",
+ StyleBox["p",
+  FontSlant->"Italic"],
+ " changes in each generation, in the book this is referred to as a \
+difference equation:"
+}], "Text",
+ CellChangeTimes->{{3.7639822878973713`*^9, 3.7639823115647163`*^9}, {
+  3.7639880560489407`*^9, 
+  3.763988070455969*^9}},ExpressionUUID->"f46eae09-98dd-4730-a1ed-\
+fd9c4e220425"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"pup", "[", "p", "]"}], "-", "p"}], ")"}], "\[Equal]", 
+  RowBox[{"p", 
+   RowBox[{"(", 
+    RowBox[{"1", "-", "p"}], ")"}], 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"wA", "/", "wa"}], ")"}], "-", "1"}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"p", " ", 
+       RowBox[{"(", 
+        RowBox[{"wA", "/", "wa"}], ")"}]}], "+", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "p"}], ")"}]}], ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.76398201221896*^9, 3.763982016619624*^9}, 
+   3.763982047567288*^9, {3.763982114105735*^9, 3.763982211282064*^9}, {
+   3.7639969277424498`*^9, 3.763996943425747*^9}, 3.7958712746096783`*^9},
+ CellLabel->"In[80]:=",ExpressionUUID->"95d884f3-9650-47e6-bdf3-9ec4ca45ddc0"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"p", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "p"}], ")"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"p", ",", "0", ",", "1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.795871300116069*^9, 3.79587130576221*^9}},
+ CellLabel->"In[81]:=",ExpressionUUID->"967f1ad0-6008-4143-be93-821ca8d6fe23"],
+
+Cell["\<\
+We redefine pup in order to make the function take fitness parameters as \
+input as well.\
+\>", "Text",
+ CellChangeTimes->{{3.7639819685500507`*^9, 
+  3.763981994853705*^9}},ExpressionUUID->"6d77070f-0ffc-4c1a-ac4a-\
+74c3fd8a8ac7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pup", "[", 
+   RowBox[{"p_", ",", "wA_", ",", "wa_"}], "]"}], ":=", 
+  RowBox[{"p", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"wA", "/", "wa"}], ")"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"p", " ", 
+       RowBox[{"(", 
+        RowBox[{"wA", "/", "wa"}], ")"}]}], "+", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "p"}], ")"}]}], ")"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.575203132464299*^9, 3.575203183680428*^9}, {
+  3.606148423434402*^9, 3.606148445059416*^9}, {3.763981876463262*^9, 
+  3.763981880520705*^9}},
+ CellLabel->"In[82]:=",ExpressionUUID->"15ae832d-9c8a-4f31-97fd-bf20b9413fa5"],
+
+Cell["\<\
+Now we plot the change in allele frequency as a function of current frequency.\
+\>", "Text",
+ CellChangeTimes->{{3.7640028831536007`*^9, 
+  3.764002896843525*^9}},ExpressionUUID->"33f37c59-8e91-4512-a74b-\
+810c8e070f73"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"pup", "[", 
+       RowBox[{"p", ",", "wA", ",", "wa"}], "]"}], "-", "p"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"p", ",", "0", ",", "1"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", ".2"}], ",", ".2"}], "}"}]}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<current allele frequency\>\"", ",", 
+        "\"\<change in allele frequency\>\""}], "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"wA", ",", "1"}], "}"}], ",", "0", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"wa", ",", "1"}], "}"}], ",", "0", ",", "2"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.7639818901118393`*^9, 3.763981910482098*^9}, {
+  3.7640028999412193`*^9, 3.764002926487089*^9}},
+ CellLabel->"In[83]:=",ExpressionUUID->"6eca253d-4252-446a-be61-9b672811fbed"],
+
+Cell["\<\
+We can also separate out the two parts of the equation to get\
+\>", "Text",
+ CellChangeTimes->{{3.763996829386333*^9, 3.763996832934346*^9}, {
+  3.764002936055953*^9, 
+  3.7640029440315237`*^9}},ExpressionUUID->"451d2330-fa6c-42e2-b4a7-\
+12cee08e9039"],
+
+Cell[BoxData[
+ RowBox[{"p", "*", 
+  RowBox[{"(", 
+   RowBox[{"1", "-", "p"}], ")"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "genetic", " ", "variation", " ", "in", " ", "the", " ", "popultion"}], 
+   "*)"}]}]], "Input",
+ CellChangeTimes->{{3.763996834024877*^9, 3.763996867857708*^9}},
+ CellLabel->"In[84]:=",ExpressionUUID->"f5f6e960-f6c9-4b98-9cf5-5682fb6db540"],
+
+Cell["and ", "Text",
+ CellChangeTimes->{{3.76399683949539*^9, 
+  3.763996839918902*^9}},ExpressionUUID->"b1008a6f-909d-4c7f-a665-\
+7d28c5b831ea"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"wA", "/", "wa"}], ")"}], "-", "1"}], ")"}], "/", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"p", " ", 
+     RowBox[{"(", 
+      RowBox[{"wA", "/", "wa"}], ")"}]}], "+", 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "p"}], ")"}]}], ")"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "amount", " ", "of", " ", "fitness", " ", "left", " ", "to", " ", "gain"}],
+    "*)"}]}]], "Input",
+ CellChangeTimes->{{3.763996859379776*^9, 3.763996898696857*^9}, 
+   3.763997004562475*^9, 3.7639971250062103`*^9},
+ CellLabel->"In[85]:=",ExpressionUUID->"823bc713-e363-46e9-ac4e-ab23d5e7412e"],
+
+Cell["We also calculated the frequency after t time units to give", "Text",
+ CellChangeTimes->{{3.795797963783441*^9, 
+  3.795797998126289*^9}},ExpressionUUID->"8c8eb179-480e-4a1a-8e3c-\
+d1a7e3b5b394"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"pt", "[", 
+   RowBox[{"wA_", ",", "wa_", ",", "p0_", ",", "t_"}], "]"}], ":=", 
+  FractionBox[
+   RowBox[{"p0", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"wA", "/", "wa"}], ")"}], "^", "t"}]}], 
+   RowBox[{
+    RowBox[{"-", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", "p0"}], ")"}]}], " ", "+", 
+    RowBox[{"p0", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"wA", "/", "wa"}], ")"}], "^", "t"}]}]}]]}]], "Input",
+ CellChangeTimes->{{3.795797991659992*^9, 3.795798078958165*^9}},
+ CellLabel->"In[86]:=",ExpressionUUID->"6ac425ca-5699-49e9-8aa8-5834ec21e25d"],
+
+Cell["\<\
+We will plot frequency over time starting with an initial frequency of 1%.\
+\>", "Text",
+ CellChangeTimes->{{3.795798141221623*^9, 
+  3.795798162453863*^9}},ExpressionUUID->"4d56b5c8-f3b1-42f6-97c4-\
+d59efbd3b9ca"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"pt", "[", 
+      RowBox[{"wA", ",", "wa", ",", "0.01", ",", "t"}], "]"}], " ", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "50"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "50"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time (generation)\>\"", ",", "\"\<Frequency of A\>\""}], 
+       "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"wA", ",", "1"}], "}"}], ",", "0", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"wa", ",", "1"}], "}"}], ",", "0", ",", "2"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.795798098962667*^9, 3.7957981353481216`*^9}, {
+  3.795798169942514*^9, 3.795798174047083*^9}, {3.795798213339807*^9, 
+  3.79579821597327*^9}, {3.7957982613408012`*^9, 3.795798278205971*^9}, {
+  3.795798322661859*^9, 3.795798324807085*^9}},
+ CellLabel->"In[87]:=",ExpressionUUID->"e7c64e36-1444-4934-8363-2a96f9e73fad"]
+}, Open  ]],
+
+Cell["\<\
+After manipulating the plots, describe your own interpretation of how this \
+model described haploid population genetic dynamics. \
+\>", "Subsubsection",
+ CellChangeTimes->{{3.8272342703949623`*^9, 
+  3.827234310388068*^9}},ExpressionUUID->"13659a05-c7da-413d-8033-\
+6241f157afe5"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1045, 989},
+WindowMargins->{{-1670, Automatic}, {Automatic, 7}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (March 18, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"470172f7-596b-43be-a5dc-2c8c12dbc4dd"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 174, 3, 101, "Section",ExpressionUUID->"301a4e49-f6a0-4a37-9b44-a5c6c3986a3c"],
+Cell[CellGroupData[{
+Cell[779, 29, 224, 4, 81, "Subsection",ExpressionUUID->"f146c082-7811-4205-9bad-42efe1c71f24"],
+Cell[CellGroupData[{
+Cell[1028, 37, 160, 3, 67, "Subsubsection",ExpressionUUID->"74787b8e-2bfe-4401-961d-1455756c9497"],
+Cell[1191, 42, 1528, 46, 227, "Text",ExpressionUUID->"b78fa801-cc88-419b-ae97-316286df05ef"],
+Cell[2722, 90, 1161, 37, 99, "Text",ExpressionUUID->"c9a74003-022d-4c82-b73f-9d440aa776e1"],
+Cell[3886, 129, 712, 18, 46, "Input",ExpressionUUID->"15ae832d-9c8a-4f31-97fd-bf20b9413fa5"],
+Cell[4601, 149, 238, 6, 53, "Text",ExpressionUUID->"461df2b5-13ab-4d2b-a12b-54043e2ea9d8"],
+Cell[4842, 157, 344, 5, 46, "Input",ExpressionUUID->"daa2e441-c8c0-4ff8-b4b5-6bd02af2cf65"],
+Cell[5189, 164, 166, 3, 46, "Input",ExpressionUUID->"82566359-d3fa-44f3-9559-7aba233bac66"],
+Cell[5358, 169, 835, 13, 46, "Input",ExpressionUUID->"2674f847-9e30-45e2-8f90-11b1b46c01ab"],
+Cell[6196, 184, 374, 10, 88, "Text",ExpressionUUID->"f46eae09-98dd-4730-a1ed-fd9c4e220425"],
+Cell[6573, 196, 823, 23, 46, "Input",ExpressionUUID->"95d884f3-9650-47e6-bdf3-9ec4ca45ddc0"],
+Cell[7399, 221, 353, 9, 46, "Input",ExpressionUUID->"967f1ad0-6008-4143-be93-821ca8d6fe23"],
+Cell[7755, 232, 241, 6, 53, "Text",ExpressionUUID->"6d77070f-0ffc-4c1a-ac4a-74c3fd8a8ac7"],
+Cell[7999, 240, 654, 18, 46, "Input",ExpressionUUID->"15ae832d-9c8a-4f31-97fd-bf20b9413fa5"],
+Cell[8656, 260, 230, 5, 53, "Text",ExpressionUUID->"33f37c59-8e91-4512-a74b-810c8e070f73"],
+Cell[8889, 267, 1110, 31, 140, "Input",ExpressionUUID->"6eca253d-4252-446a-be61-9b672811fbed"],
+Cell[10002, 300, 262, 6, 53, "Text",ExpressionUUID->"451d2330-fa6c-42e2-b4a7-12cee08e9039"],
+Cell[10267, 308, 363, 9, 46, "Input",ExpressionUUID->"f5f6e960-f6c9-4b98-9cf5-5682fb6db540"],
+Cell[10633, 319, 145, 3, 53, "Text",ExpressionUUID->"b1008a6f-909d-4c7f-a665-7d28c5b831ea"],
+Cell[10781, 324, 643, 19, 46, "Input",ExpressionUUID->"823bc713-e363-46e9-ac4e-ab23d5e7412e"],
+Cell[11427, 345, 201, 3, 53, "Text",ExpressionUUID->"8c8eb179-480e-4a1a-8e3c-d1a7e3b5b394"],
+Cell[11631, 350, 636, 19, 72, "Input",ExpressionUUID->"6ac425ca-5699-49e9-8aa8-5834ec21e25d"],
+Cell[12270, 371, 224, 5, 53, "Text",ExpressionUUID->"4d56b5c8-f3b1-42f6-97c4-d59efbd3b9ca"],
+Cell[12497, 378, 1308, 34, 140, "Input",ExpressionUUID->"e7c64e36-1444-4934-8363-2a96f9e73fad"]
+}, Open  ]],
+Cell[13820, 415, 291, 6, 106, "Subsubsection",ExpressionUUID->"13659a05-c7da-413d-8033-6241f157afe5"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
