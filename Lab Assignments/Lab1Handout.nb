@@ -1,0 +1,445 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17888,        437]
+NotebookOptionsPosition[     14137,        381]
+NotebookOutlinePosition[     14561,        398]
+CellTagsIndexPosition[     14518,        395]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lab 1: Getting Familiar with Mathematica coding", "Title",
+ CellChangeTimes->{{3.794830913108131*^9, 
+  3.7948309465472183`*^9}},ExpressionUUID->"b261bc67-a8d5-4218-994c-\
+ef2f14653787"],
+
+Cell["Name: YOUR name here", "Text",
+ CellChangeTimes->{{3.794830953857463*^9, 
+  3.7948309594186697`*^9}},ExpressionUUID->"c04277b3-589a-4b30-854b-\
+e7f573e7226c"],
+
+Cell[CellGroupData[{
+
+Cell["Writing functions to do the tree branch example", "Subsubsection",
+ CellChangeTimes->{{3.7633338356951427`*^9, 3.763333838662858*^9}, {
+  3.7948310806035357`*^9, 
+  3.794831090022766*^9}},ExpressionUUID->"3a4d4731-8750-489c-b3f3-\
+93180b7c887e"],
+
+Cell["\<\
+A function can be \[OpenCurlyDoubleQuote]normal\[CloseCurlyDoubleQuote] math, \
+or a series of instructions. We group calculations with the () parenthesis \
+and separate them with ; 
+A ; also suppresses output: see\
+\>", "Text",
+ CellChangeTimes->{{3.763377697803541*^9, 3.7633777464348383`*^9}, {
+  3.7633778029160757`*^9, 3.7633778089578753`*^9}, {3.794831336671484*^9, 
+  3.7948313430412397`*^9}},ExpressionUUID->"b880d926-fd59-4098-8ab4-\
+6cc4553ec52e"],
+
+Cell[BoxData[
+ RowBox[{"1", "+", "1"}]], "Input",
+ CellChangeTimes->{{3.7948313445715303`*^9, 3.794831346056427*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"835c3e28-ce60-43b4-adbc-d7d721eddbea"],
+
+Cell["versus", "Text",
+ CellChangeTimes->{{3.794831351728888*^9, 
+  3.794831355834449*^9}},ExpressionUUID->"a01f8249-c358-48c8-a995-\
+6a64f8abc07c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"1", "+", "1"}], ";"}]], "Input",
+ CellChangeTimes->{{3.794831370601609*^9, 3.794831371560061*^9}},
+ CellLabel->"In[39]:=",ExpressionUUID->"488196b0-2c47-48c6-b58b-8de9183cff57"],
+
+Cell["Input the functions:", "Text",
+ CellChangeTimes->{{3.794831457968562*^9, 3.794831460906959*^9}, {
+  3.794836979535224*^9, 
+  3.794836980165881*^9}},ExpressionUUID->"804d3bfd-752f-4e66-b9a3-\
+bf465b1a9e8f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "comments", " ", "can", " ", "also", " ", "use", " ", "this", " ", 
+    RowBox[{"format", ".", " ", "Make"}], " ", "sure", " ", "we", " ", 
+    RowBox[{"don", "'"}], "t", " ", "already", " ", "have", " ", "values", 
+    " ", "for", " ", "these"}], "*)"}], 
+  RowBox[{"Clear", "[", 
+   RowBox[{"n", ",", "b", ",", "branchupdate1", ",", "branchupdate2"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.794831447626863*^9, 3.794831492506674*^9}, {
+  3.79483153201982*^9, 3.79483153223921*^9}, {3.794831649142148*^9, 
+  3.794831652540629*^9}},
+ CellLabel->
+  "In[275]:=",ExpressionUUID->"063dbd51-d571-48ee-9f71-66937baabcfa"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"branchupdate1", "[", "n_", "]"}], ":=", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"newbranches", "=", 
+     RowBox[{"n", "*", "b"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"nnew", "=", 
+     RowBox[{"n", "+", "newbranches"}]}]}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.7633777196833897`*^9, 3.7633777954969683`*^9}, 
+   3.763377845503269*^9, {3.79479843782227*^9, 3.794798454272975*^9}, {
+   3.794831105445801*^9, 3.79483116181861*^9}, {3.794831237892268*^9, 
+   3.7948312529304132`*^9}, {3.794831290774365*^9, 3.794831290834228*^9}, {
+   3.794831322819993*^9, 3.794831332480204*^9}, 3.7948316548697042`*^9},
+ CellLabel->
+  "In[276]:=",ExpressionUUID->"5df93e51-21d7-4e67-94ad-713c79cbb68c"],
+
+Cell["See what our function does", "Text",
+ CellChangeTimes->{{3.794831440612623*^9, 3.794831443103684*^9}, {
+  3.794831500911624*^9, 
+  3.794831508824607*^9}},ExpressionUUID->"05f6ebef-0a6e-43f0-8511-\
+acaee08f01a9"],
+
+Cell[BoxData[
+ RowBox[{"branchupdate1", "[", "n", "]"}]], "Input",
+ CellChangeTimes->{{3.763377984205105*^9, 3.7633780359695797`*^9}, {
+   3.794831433083418*^9, 3.794831434252516*^9}, 3.794831657244295*^9},
+ CellLabel->
+  "In[277]:=",ExpressionUUID->"14cd0654-340e-4f8e-861f-3b6eeda30d38"],
+
+Cell["\<\
+We can use the Simplify command to make it look a little nicer, Mathematica \
+does pretty well\
+\>", "Text",
+ CellChangeTimes->{{3.763378092153434*^9, 3.763378134752058*^9}, {
+  3.763378228360461*^9, 
+  3.763378299360962*^9}},ExpressionUUID->"b07eb30a-fd20-48d1-bf18-\
+36c4bfc67b86"],
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", " ", 
+  RowBox[{"n", "+", 
+   RowBox[{"b", " ", "n"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.794831547663899*^9, 3.794831552243783*^9}},
+ NumberMarks->False,
+ CellLabel->
+  "In[278]:=",ExpressionUUID->"c3690645-a263-4f5b-b9fe-f49b5f883e02"],
+
+Cell["\<\
+If we have values for b then we can compute an actual number of branches\
+\>", "Text",
+ CellChangeTimes->{{3.794831663323536*^9, 3.7948316848858213`*^9}, 
+   3.794832014897293*^9},ExpressionUUID->"9bed18be-9dec-4644-9802-\
+9a5d85afd04c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"b", "=", "0.5"}], ";"}]], "Input",
+ CellChangeTimes->{{3.7948316858710833`*^9, 3.794831687672275*^9}},
+ CellLabel->
+  "In[279]:=",ExpressionUUID->"8107936b-5887-4584-b699-5fcf81b7bb5b"],
+
+Cell[BoxData[
+ RowBox[{"branchupdate1", "[", "1", "]"}]], "Input",
+ CellChangeTimes->{{3.794831690980616*^9, 3.794831692798978*^9}, 
+   3.7948417679472647`*^9},
+ CellLabel->
+  "In[280]:=",ExpressionUUID->"5e2d97cf-e3a0-4dc6-88f3-9657d4474bf3"],
+
+Cell["\<\
+Which tells us that if 50% of branches branch, and we start with 1 branch, we \
+have 1.5 branches (on average) after one time step.\
+\>", "Text",
+ CellChangeTimes->{{3.794831702521261*^9, 
+  3.794831727367319*^9}},ExpressionUUID->"d68def9a-70b5-44d5-ad2d-\
+5f0fc8121f8a"],
+
+Cell["\<\
+In this case, we could have written a function that did it all in just one \
+step instead of two steps. But it will be important to know how to do \
+multi-step functions in the future!\
+\>", "Text",
+ CellChangeTimes->{{3.763377836439207*^9, 3.76337786524972*^9}, {
+  3.794831601719151*^9, 
+  3.794831629939393*^9}},ExpressionUUID->"fb078208-54c0-4bc6-8592-\
+ebc72fede68b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Clear", " ", "the", " ", "values", " ", "again"}], " ", "*)"}], 
+  " ", 
+  RowBox[{"Clear", "[", 
+   RowBox[{"n", ",", "b", ",", "branchupdate1", ",", "branchupdate2"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.794831447626863*^9, 3.794831492506674*^9}, {
+  3.79483153201982*^9, 3.79483153223921*^9}, {3.794831649142148*^9, 
+  3.794831652540629*^9}, {3.794831750565281*^9, 3.794831758839046*^9}},
+ CellLabel->"In[46]:=",ExpressionUUID->"61d98af3-113a-42e3-934a-93f6a353c16f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"branchupdate2", "[", "n_", "]"}], ":=", 
+  RowBox[{"nnew", "=", 
+   RowBox[{"n", "+", 
+    RowBox[{"n", "*", "b", " ", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"note", " ", "that", " ", "we", " ", 
+        RowBox[{"don", "'"}], "t", " ", "need", " ", "the", " ", 
+        RowBox[{"(", ")"}], " ", "or"}], " ", ";", " ", 
+       RowBox[{"now", " ", "because", " ", "we", " ", 
+        RowBox[{"aren", "'"}], "t", " ", "grouping", " ", "anything"}]}], 
+      "*)"}]}]}]}]}]], "Input",
+ CellChangeTimes->{
+  3.794831639138651*^9, {3.794831771195014*^9, 3.794831798374831*^9}},
+ CellLabel->
+  "In[281]:=",ExpressionUUID->"07784793-e573-4666-aba0-4cc38c1f9d7b"],
+
+Cell[BoxData[
+ RowBox[{"branchupdate2", "[", "n", "]"}]], "Input",
+ CellChangeTimes->{{3.763333866038515*^9, 3.763333878334632*^9}, {
+   3.7633341629254827`*^9, 3.7633341687536716`*^9}, 3.7633778479284573`*^9, {
+   3.794831802929511*^9, 3.794831807506846*^9}},
+ CellLabel->
+  "In[282]:=",ExpressionUUID->"795c3632-a479-4432-a968-251d2691a7b9"],
+
+Cell["\<\
+When do we expect the number of  branches grow? Although the math is easy \
+here, we can ask Mathematica to do it for us. 
+The Reduce function takes input in the form of inequalities (&& means that \
+both things must be true) and simplifies it.  \
+\>", "Text",
+ CellChangeTimes->{{3.7633513400368156`*^9, 3.763351359147214*^9}, {
+  3.794831818904187*^9, 3.794831829814823*^9}, {3.794831875767572*^9, 
+  3.794831940120448*^9}},ExpressionUUID->"bce09d6f-4db6-47cf-a1ce-\
+94e4aed4f360"],
+
+Cell[BoxData[
+ RowBox[{"Reduce", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"branchupdate2", "[", "n", "]"}], ">", "n"}], " ", "&&", " ", 
+    RowBox[{"n", ">", "0"}]}], " ", ",", " ", "Reals"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7633348902023993`*^9, 3.763334916605953*^9}, {
+  3.763335239944127*^9, 3.763335256459284*^9}, {3.7633513731819267`*^9, 
+  3.763351387692192*^9}, {3.79483183671599*^9, 3.7948318688425827`*^9}},
+ CellLabel->"In[49]:=",ExpressionUUID->"96ff86fc-c2b0-4c4a-b1f8-5a243c645019"],
+
+Cell["\<\
+We also would like to repeatedly iterate the model and do some plotting\
+\>", "Text",
+ CellChangeTimes->{{3.794831944710952*^9, 3.794831955791095*^9}, {
+  3.794832049348748*^9, 
+  3.794832055195313*^9}},ExpressionUUID->"a7aa751d-0d78-4596-b4f2-\
+30ac66b00f33"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"b", "=", "0.2"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"set", " ", "our", " ", "parameter"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"n", "=", "1"}], ";"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "First", " ", "we", " ", "have", " ", "to", " ", "set", " ", "the", " ", 
+    "initial", " ", "number"}], "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "We", " ", "use", " ", "\"\<Table\>\"", " ", "to", " ", "make", " ", "a", 
+     " ", "list", " ", "of", " ", "the", " ", "outputs", " ", "over", " ", 
+     RowBox[{"time", ".", " ", "The"}], " ", "output", " ", "is", " ", "a", 
+     " ", "table"}], ",", " ", 
+    RowBox[{
+    "where", " ", "each", " ", "row", " ", "is", " ", "two", " ", "numbers"}],
+     ",", " ", 
+    RowBox[{
+    "the", " ", "time", " ", "and", " ", "then", " ", "the", " ", "number", 
+     " ", "of", " ", "branches"}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"branches", "=", 
+  RowBox[{"Table", "[", " ", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"nnew", "=", 
+      RowBox[{"branchupdate2", "[", "n", "]"}]}], ";", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"n", "=", "nnew"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "n"}], "}"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "1", ",", "20"}], "}"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.763334336489043*^9, 3.7633343500170307`*^9}, {
+  3.7633347408023033`*^9, 3.763334815457616*^9}, {3.76335148144143*^9, 
+  3.763351519768627*^9}, {3.7948320682522573`*^9, 3.7948320926648483`*^9}, {
+  3.794835793185227*^9, 3.794835801124527*^9}, {3.79483587178083*^9, 
+  3.794835971724228*^9}},
+ CellLabel->
+  "In[284]:=",ExpressionUUID->"ad62b442-ddcf-4006-a908-14e2bcc0891a"],
+
+Cell["\<\
+We can see the output in another format to make it more clear how the rows \
+are organized.\
+\>", "Text",
+ CellChangeTimes->{{3.794835977835587*^9, 
+  3.7948359937021217`*^9}},ExpressionUUID->"784e1ba2-3e02-4f24-822b-\
+e46ea862e00f"],
+
+Cell[BoxData[
+ RowBox[{"MatrixForm", "[", "branches", "]"}]], "Input",
+ CellChangeTimes->{{3.794835942092204*^9, 3.794835954183023*^9}},
+ CellLabel->
+  "In[287]:=",ExpressionUUID->"40504b87-d555-4272-b74c-3ecabbb0f16b"],
+
+Cell["\<\
+Now we will make a plot. The \[OpenCurlyDoubleQuote]ListPlot\
+\[CloseCurlyDoubleQuote] command plots lists, and our output is a list.\
+\>", "Text",
+ CellChangeTimes->{{3.794835996772447*^9, 
+  3.79483601575716*^9}},ExpressionUUID->"f1d8f73a-beb5-42d1-a7b3-\
+3f8fdb5aa471"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", "branches", "]"}]], "Input",
+ CellChangeTimes->{{3.76333482044094*^9, 3.7633348231887302`*^9}, {
+  3.794836021943161*^9, 3.794836023131358*^9}},
+ CellLabel->
+  "In[288]:=",ExpressionUUID->"7433dedf-9422-431e-9b06-4d4f00cfddb5"],
+
+Cell["\<\
+We can make it look a little nicer and label some things too.\
+\>", "Text",
+ CellChangeTimes->{{3.7948360259833527`*^9, 
+  3.794836034358466*^9}},ExpressionUUID->"8d4f4993-0ac5-4eac-84ed-\
+1112bbba9c53"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"branches", ",", 
+   RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+   RowBox[{"FrameLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Time point\>\"", ",", "\"\<Number of branches\>\""}], 
+     "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7948360762176857`*^9, 3.794836096693329*^9}},
+ CellLabel->
+  "In[289]:=",ExpressionUUID->"f24fa839-beda-48f6-beec-eca66b00f3bc"],
+
+Cell["\<\
+If you want to now more about the options for ListPlot then use the help \
+function and click through to the full manual entry.\
+\>", "Text",
+ CellChangeTimes->{{3.794836041378254*^9, 
+  3.7948360700830507`*^9}},ExpressionUUID->"a9807503-9d9d-42da-a73c-\
+895d6c8f4925"],
+
+Cell[BoxData[
+ RowBox[{"?", "ListPlot"}]], "Input",
+ CellChangeTimes->{{3.7948360511779547`*^9, 3.794836053029862*^9}},
+ CellLabel->"In[56]:=",ExpressionUUID->"e3e94916-b5d6-4955-a8c9-de4d1b107fc5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Go through these same steps but with the mice in the backyard model:\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.7633338356951427`*^9, 3.763333838662858*^9}, {
+  3.7948310806035357`*^9, 3.794831090022766*^9}, {3.794831982513172*^9, 
+  3.794832001678491*^9}},ExpressionUUID->"98221b2b-e104-44de-9fbb-\
+98698a25433b"],
+
+Cell["\<\
+The notes on GS describe the model for mice in a backyard. It has a \
+description of the equation for updating the number of mice including births, \
+deaths, and migration into the yard. Do the same analysis for the mice model \
+as we did for the tree model. \
+\>", "Text",
+ CellChangeTimes->{{3.794836107840117*^9, 3.794836123113008*^9}, {
+  3.7948362278616343`*^9, 3.794836235886148*^9}, {3.7948362863373623`*^9, 
+  3.794836347650689*^9}},ExpressionUUID->"3b48466a-429e-4320-8758-\
+4d22318ea163"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1273, 901},
+WindowMargins->{{134, Automatic}, {Automatic, 0}},
+Magnification:>2. Inherited,
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (March 18, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"8ddbc230-5651-435f-b9cc-d68f7414076e"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 192, 3, 316, "Title",ExpressionUUID->"b261bc67-a8d5-4218-994c-ef2f14653787"],
+Cell[775, 27, 164, 3, 69, "Text",ExpressionUUID->"c04277b3-589a-4b30-854b-e7f573e7226c"],
+Cell[CellGroupData[{
+Cell[964, 34, 251, 4, 89, "Subsubsection",ExpressionUUID->"3a4d4731-8750-489c-b3f3-93180b7c887e"],
+Cell[1218, 40, 467, 9, 159, "Text",ExpressionUUID->"b880d926-fd59-4098-8ab4-6cc4553ec52e"],
+Cell[1688, 51, 196, 3, 59, "Input",ExpressionUUID->"835c3e28-ce60-43b4-adbc-d7d721eddbea"],
+Cell[1887, 56, 148, 3, 69, "Text",ExpressionUUID->"a01f8249-c358-48c8-a995-6a64f8abc07c"],
+Cell[2038, 61, 212, 4, 59, "Input",ExpressionUUID->"488196b0-2c47-48c6-b58b-8de9183cff57"],
+Cell[2253, 67, 211, 4, 69, "Text",ExpressionUUID->"804d3bfd-752f-4e66-b9a3-bf465b1a9e8f"],
+Cell[2467, 73, 677, 15, 164, "Input",ExpressionUUID->"063dbd51-d571-48ee-9f71-66937baabcfa"],
+Cell[3147, 90, 731, 15, 123, "Input",ExpressionUUID->"5df93e51-21d7-4e67-94ad-713c79cbb68c"],
+Cell[3881, 107, 217, 4, 69, "Text",ExpressionUUID->"05f6ebef-0a6e-43f0-8511-acaee08f01a9"],
+Cell[4101, 113, 289, 5, 81, "Input",ExpressionUUID->"14cd0654-340e-4f8e-861f-3b6eeda30d38"],
+Cell[4393, 120, 293, 7, 114, "Text",ExpressionUUID->"b07eb30a-fd20-48d1-bf18-36c4bfc67b86"],
+Cell[4689, 129, 283, 7, 81, "Input",ExpressionUUID->"c3690645-a263-4f5b-b9fe-f49b5f883e02"],
+Cell[4975, 138, 247, 5, 69, "Text",ExpressionUUID->"9bed18be-9dec-4644-9802-9a5d85afd04c"],
+Cell[5225, 145, 220, 5, 81, "Input",ExpressionUUID->"8107936b-5887-4584-b699-5fcf81b7bb5b"],
+Cell[5448, 152, 243, 5, 81, "Input",ExpressionUUID->"5e2d97cf-e3a0-4dc6-88f3-9657d4474bf3"],
+Cell[5694, 159, 281, 6, 114, "Text",ExpressionUUID->"d68def9a-70b5-44d5-ad2d-5f0fc8121f8a"],
+Cell[5978, 167, 382, 8, 159, "Text",ExpressionUUID->"fb078208-54c0-4bc6-8592-ebc72fede68b"],
+Cell[6363, 177, 532, 11, 101, "Input",ExpressionUUID->"61d98af3-113a-42e3-934a-93f6a353c16f"],
+Cell[6898, 190, 701, 17, 164, "Input",ExpressionUUID->"07784793-e573-4666-aba0-4cc38c1f9d7b"],
+Cell[7602, 209, 343, 6, 81, "Input",ExpressionUUID->"795c3632-a479-4432-a968-251d2691a7b9"],
+Cell[7948, 217, 493, 9, 204, "Text",ExpressionUUID->"bce09d6f-4db6-47cf-a1ce-94e4aed4f360"],
+Cell[8444, 228, 518, 10, 59, "Input",ExpressionUUID->"96ff86fc-c2b0-4c4a-b1f8-5a243c645019"],
+Cell[8965, 240, 270, 6, 69, "Text",ExpressionUUID->"a7aa751d-0d78-4596-b4f2-30ac66b00f33"],
+Cell[9238, 248, 1845, 46, 451, "Input",ExpressionUUID->"ad62b442-ddcf-4006-a908-14e2bcc0891a"],
+Cell[11086, 296, 243, 6, 114, "Text",ExpressionUUID->"784e1ba2-3e02-4f24-822b-e46ea862e00f"],
+Cell[11332, 304, 219, 4, 81, "Input",ExpressionUUID->"40504b87-d555-4272-b74c-3ecabbb0f16b"],
+Cell[11554, 310, 282, 6, 69, "Text",ExpressionUUID->"f1d8f73a-beb5-42d1-a7b3-3f8fdb5aa471"],
+Cell[11839, 318, 267, 5, 81, "Input",ExpressionUUID->"7433dedf-9422-431e-9b06-4d4f00cfddb5"],
+Cell[12109, 325, 213, 5, 69, "Text",ExpressionUUID->"8d4f4993-0ac5-4eac-84ed-1112bbba9c53"],
+Cell[12325, 332, 427, 10, 123, "Input",ExpressionUUID->"f24fa839-beda-48f6-beec-eca66b00f3bc"],
+Cell[12755, 344, 279, 6, 114, "Text",ExpressionUUID->"a9807503-9d9d-42da-a73c-895d6c8f4925"],
+Cell[13037, 352, 198, 3, 59, "Input",ExpressionUUID->"e3e94916-b5d6-4955-a8c9-de4d1b107fc5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13272, 360, 326, 6, 140, "Subsubsection",ExpressionUUID->"98221b2b-e104-44de-9fbb-98698a25433b"],
+Cell[13601, 368, 508, 9, 159, "Text",ExpressionUUID->"3b48466a-429e-4320-8758-4d22318ea163"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
