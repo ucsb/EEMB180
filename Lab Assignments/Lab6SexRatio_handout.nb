@@ -1,0 +1,819 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     33565,        811]
+NotebookOptionsPosition[     30655,        762]
+NotebookOutlinePosition[     31084,        779]
+CellTagsIndexPosition[     31041,        776]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Sex Allocation Evolution", "Title",
+ CellChangeTimes->{{3.575905182987686*^9, 
+  3.575905193216879*^9}},ExpressionUUID->"d1203eee-2eef-40ff-a411-\
+52ec80235005"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"r", ",", " ", "rhat", ",", "\[Lambda]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetSystemOptions", "[", 
+   RowBox[{"\"\<CompileOptions\>\"", "\[Rule]", 
+    RowBox[{"\"\<TableCompileLength\>\"", "\[Rule]", "Infinity"}]}], "]"}], 
+  ";"}]}], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.670159838227563*^9, 3.670159865626832*^9}, {
+  3.670352154280045*^9, 3.6703521558697853`*^9}},
+ CellLabel->
+  "In[576]:=",ExpressionUUID->"53ac49ae-3f10-4969-91e1-225f5cac2864"],
+
+Cell[CellGroupData[{
+
+Cell["Fitness calculation using the number of grand-offspring", "Subsection",
+ CellChangeTimes->{{3.575905208115608*^9, 3.575905217738503*^9}, 
+   3.7337479773196135`*^9},ExpressionUUID->"b02a98d3-5d83-4f51-afd2-\
+51a395b8ab68"],
+
+Cell[TextData[{
+ "The scaled number of grand-offspring under the Fisher sex allocation model, \
+where the mating pool is the same as the entire population. ",
+ StyleBox[" ",
+  FontWeight->"Bold"],
+ StyleBox["r",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ StyleBox[" ",
+  FontSlant->"Italic"],
+ "is the proportion of males produced by other members of the population, and \
+",
+ StyleBox["rhat",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ " is the proportion of males produced by the mutant female."
+}], "Text",
+ CellChangeTimes->{{3.5759067263258657`*^9, 3.575906787826028*^9}, {
+   3.638801367127975*^9, 3.638801373279459*^9}, {3.6388016477077017`*^9, 
+   3.638801659788619*^9}, 3.7337479743531914`*^9, {3.733761829067672*^9, 
+   3.733761870516183*^9}, {3.797816937850493*^9, 
+   3.7978169422026243`*^9}},ExpressionUUID->"0c993889-2653-47e3-b99c-\
+e50af732ce32"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"\[Lambda]", "[", 
+   RowBox[{"r_", ",", "rhat_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"1", "/", "2"}], " ", "*", 
+   RowBox[{"(", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "rhat"}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"1", "-", "r"}], ")"}]}], " ", "+", " ", 
+     RowBox[{"rhat", "/", "r"}]}], ")"}], "  ", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+      StyleBox["\[Lambda]",
+       FontWeight->"Bold"], " ", "is", " ", "the", " ", "invasion", " ", 
+      "fitness", " ", "of", " ", "the", " ", "mutant", " ", 
+      RowBox[{"female", ".", " ", "It"}], " ", "is", " ", "expressed", " ", 
+      "as", " ", "a", " ", "function", " ", "of", " ", "her", " ", "sex", " ",
+       "allocation", " ", "strategy"}], ",", " ", "rhat"}], " ", 
+    "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.575906628739781*^9, 3.575906673479883*^9}, {
+  3.6073595338436537`*^9, 3.607359549036997*^9}, {3.6388014235196047`*^9, 
+  3.638801442680709*^9}, {3.638801481944517*^9, 3.638801529279055*^9}, {
+  3.670159823041297*^9, 3.67015983377664*^9}, {3.670257119375032*^9, 
+  3.6702571196463737`*^9}, {3.829312242042708*^9, 
+  3.829312245840042*^9}},ExpressionUUID->"1b4f786b-3527-4727-96b5-\
+5c27684b4b88"],
+
+Cell[TextData[{
+ StyleBox["Q1:",
+  FontWeight->"Bold"],
+ " Plot the invasion fitness (",
+ StyleBox["\[Lambda][rhat,r]",
+  FontSlant->"Italic"],
+ ") of the mutant female for different values of ",
+ StyleBox["r",
+  FontSlant->"Italic"],
+ " (try ",
+ StyleBox["0.05, 0.45, 0.50 , 0.55, 0.95",
+  FontSlant->"Italic"],
+ "). Be sure to label your axes with the AxesLabel option and use the \
+PlotRange option to make the graphs look nice. (Brownie points if you can get \
+all the plots on the same graph.) Explain how these figures predict how sex \
+ratio will evolve."
+}], "Text",
+ CellChangeTimes->{{3.6388014706951303`*^9, 3.638801479608142*^9}, {
+  3.638801533046195*^9, 3.6388015772608833`*^9}, {3.6388016408991013`*^9, 
+  3.6388016422925463`*^9}, {3.638801782843693*^9, 3.638801809497746*^9}, {
+  3.638801852930381*^9, 3.6388018848079576`*^9}, {3.670159968175552*^9, 
+  3.670159994053712*^9}, {3.670257099048833*^9, 3.6702571068222857`*^9}, {
+  3.702312263347024*^9, 3.702312281271895*^9}, {3.733747195425079*^9, 
+  3.7337472145134563`*^9}, {3.7337472883403606`*^9, 
+  3.7337473725902987`*^9}},ExpressionUUID->"9aea36d4-daab-4b0b-8455-\
+730f50f4b6c8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Simulation of Sex Allocation Evolution", "Section",
+ CellChangeTimes->{{3.607265568633116*^9, 3.607265585156849*^9}, {
+  3.607359661256652*^9, 3.607359671942236*^9}, {3.607360283204814*^9, 
+  3.607360287993762*^9}, {3.638802721721133*^9, 3.6388027301989717`*^9}, {
+  3.702312394760861*^9, 
+  3.7023124086783648`*^9}},ExpressionUUID->"09836ebc-c431-43e9-a1e5-\
+dc96f0b94dca"],
+
+Cell["\<\
+Here we will program a simulation to track the number of individuals carrying \
+alleles for different sex allocation strategies. Each individual will be \
+characterized by their sex allocation strategy which is a number between 0 \
+and 1. \
+\>", "Text",
+ CellChangeTimes->{{3.702312474960428*^9, 3.702312523001996*^9}, {
+  3.733747470776905*^9, 
+  3.7337474726329217`*^9}},ExpressionUUID->"1de7e24c-3967-41f6-95aa-\
+2bc6dbde4594"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.6072660970639257`*^9, 3.607266105497581*^9}, {
+   3.6072804362711353`*^9, 3.607280439950552*^9}, {3.607280704901346*^9, 
+   3.607280705115192*^9}, 
+   3.7978171599684353`*^9},ExpressionUUID->"69e1feaa-3605-4bed-87d7-\
+94c13609d197"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.702312535625306*^9, 3.7023125533581343`*^9}, {
+   3.7023127662143307`*^9, 3.7023127841284723`*^9}, {3.702313705011341*^9, 
+   3.7023137050861692`*^9}, {3.702314094881073*^9, 3.70231409517524*^9}, {
+   3.702314356370206*^9, 3.7023144187107077`*^9}, {3.7023146481727543`*^9, 
+   3.702314648315679*^9}, 
+   3.797817151918489*^9},ExpressionUUID->"062df0c2-1488-456b-8a23-\
+08b059c32e41"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"tmax", "=", "200"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "number", " ", "of", " ", "generations", " ", "to", " ", "simulate", " ", 
+    "for"}], " ", "*)"}]}]], "Input",
+ CellChangeTimes->{{3.702313951575254*^9, 3.702313960656608*^9}},
+ CellLabel->
+  "In[652]:=",ExpressionUUID->"2083602f-e315-4aaa-b50e-c51b236c9bda"],
+
+Cell[BoxData[
+ RowBox[{"DoSim", ":=", 
+  RowBox[{"(", 
+   RowBox[{"(*", " ", 
+    RowBox[{"proprA", " ", "=", " ", "\"\<proportion rA\>\""}], " ", "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"proprA", "=", 
+     RowBox[{"Table", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"fathers", "=", 
+         RowBox[{"RandomChoice", "[", 
+          RowBox[{"malinds", ",", 
+           RowBox[{"{", 
+            RowBox[{"Length", "[", "feminds", "]"}], "}"}]}], "]"}]}], ";", 
+        " ", 
+        RowBox[{"(*", 
+         RowBox[{
+         "choose", " ", "male", " ", "parents", " ", "at", " ", "random"}], 
+         "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"mates", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"feminds", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], ",", 
+             RowBox[{"fathers", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "1", ",", 
+             RowBox[{"Length", "[", "feminds", "]"}]}], "}"}]}], "]"}]}], ";", 
+        RowBox[{"(*", 
+         RowBox[{"define", " ", "mated", " ", "pairs"}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"parents", "=", 
+         RowBox[{"RandomChoice", "[", 
+          RowBox[{
+           RowBox[{"Table", "[", 
+            RowBox[{"i", ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", "1", ",", 
+               RowBox[{"Length", "[", "feminds", "]"}]}], "}"}]}], "]"}], ",",
+            "npop"}], "]"}]}], ";", 
+        RowBox[{"(*", 
+         RowBox[{
+         "choose", " ", "parents", " ", "for", " ", "the", " ", "next", " ", 
+          "generation"}], "*)"}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"newmal", "=", 
+         RowBox[{"{", "}"}]}], ";", 
+        RowBox[{"newfem", "=", 
+         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Do", "[", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Random", "[", "]"}], "<", 
+             RowBox[{"mates", "[", 
+              RowBox[{"[", 
+               RowBox[{
+                RowBox[{"parents", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ",", "1"}], "]"}], "]"}]}], 
+            " ", 
+            RowBox[{"(*", 
+             RowBox[{
+              RowBox[{
+              "here", " ", "is", " ", "where", " ", "sex", " ", "allocation", 
+               " ", 
+               RowBox[{"happens", ".", " ", "If"}], " ", "the", " ", "random",
+                " ", "draw", " ", "is", " ", "lower", " ", "than", " ", "the",
+                " ", "individuals", " ", "r", " ", "allele", " ", "value", 
+               " ", "then", " ", "the", " ", "offspring", " ", "is", " ", 
+               "male"}], ",", " ", 
+              RowBox[{"otherwise", " ", 
+               RowBox[{"female", "."}]}]}], "*)"}], ",", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"newmal", ",", 
+              RowBox[{
+               RowBox[{"RandomSample", "[", 
+                RowBox[{
+                 RowBox[{"mates", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"parents", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ",", "1"}], 
+                "]"}], "[", 
+               RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"newfem", ",", 
+              RowBox[{
+               RowBox[{"RandomSample", "[", 
+                RowBox[{
+                 RowBox[{"mates", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"parents", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ",", "1"}], 
+                "]"}], "[", 
+               RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", "npop"}], "}"}]}], "]"}], ";", 
+        RowBox[{"malinds", "=", "newmal"}], ";", 
+        RowBox[{"feminds", "=", "newfem"}], ";", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", 
+          RowBox[{
+           RowBox[{"Length", "[", 
+            RowBox[{"Position", "[", 
+             RowBox[{"feminds", ",", "rA"}], "]"}], "]"}], "/", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Length", "[", 
+              RowBox[{"Position", "[", 
+               RowBox[{"feminds", ",", "rA"}], "]"}], "]"}], "+", 
+             RowBox[{"Length", "[", 
+              RowBox[{"Position", "[", 
+               RowBox[{"feminds", ",", "ra"}], "]"}], "]"}]}], ")"}]}]}], 
+         "}"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "1", ",", "tmax"}], "}"}]}], "]"}]}], ";"}], 
+   ")"}]}]], "Input",
+ CellChangeTimes->{{3.60726582197211*^9, 3.607265838512164*^9}, {
+   3.607265944971966*^9, 3.607265959652335*^9}, {3.607265997657546*^9, 
+   3.6072660941245813`*^9}, {3.607280095138133*^9, 3.607280231510829*^9}, {
+   3.607280302373884*^9, 3.6072803984403267`*^9}, {3.607280529121645*^9, 
+   3.60728053139795*^9}, {3.6072806635807734`*^9, 3.607280684044249*^9}, {
+   3.607280769086516*^9, 3.60728077526294*^9}, 3.6072808217927437`*^9, 
+   3.607280937590197*^9, {3.6388031334895163`*^9, 3.638803153114087*^9}, {
+   3.6702605203194027`*^9, 3.670260568905491*^9}, {3.702312564367161*^9, 
+   3.702312595480505*^9}, {3.7023126258145857`*^9, 3.702312652477256*^9}, {
+   3.7023126958342333`*^9, 3.70231270194724*^9}, {3.702312803613373*^9, 
+   3.7023128613217583`*^9}, 3.702313001526559*^9, {3.7023136922759132`*^9, 
+   3.7023136941815243`*^9}, {3.70231377203974*^9, 3.7023137752335253`*^9}, {
+   3.702313827277842*^9, 3.7023138273592367`*^9}, {3.7023138579723787`*^9, 
+   3.702313937156259*^9}, {3.702314212631765*^9, 3.702314227217737*^9}, {
+   3.7023142740854063`*^9, 3.702314347336937*^9}, 3.702314552355147*^9, {
+   3.702314621152072*^9, 3.7023146397534227`*^9}, 3.7337475461742725`*^9, {
+   3.7337622330562043`*^9, 3.7337622544815397`*^9}, {3.765824423075322*^9, 
+   3.765824431033964*^9}, 3.7658252014987087`*^9},
+ CellLabel->
+  "In[653]:=",ExpressionUUID->"783239ad-9709-48a5-b37b-6850ac7e0d54"],
+
+Cell[TextData[{
+ StyleBox["proprA",
+  FontSlant->"Italic"],
+ " is a list that contains the percentage of female individuals carrying \
+genotype ",
+ StyleBox["rA",
+  FontSlant->"Italic"],
+ " in each generation. You will plot this list in the next question. \n\nTo \
+run this simulation, you need to follow the recipe for running a simulation. \
+Before each run you need to set your initial conditions and parameters. For \
+example:"
+}], "Text",
+ CellChangeTimes->{{3.7023139291842213`*^9, 3.7023139331761723`*^9}, {
+  3.702313976072825*^9, 3.70231399380129*^9}, {3.702314684447801*^9, 
+  3.7023146928289433`*^9}, {3.7337622832482705`*^9, 3.7337623137612343`*^9}, {
+  3.797817037785602*^9, 3.797817136083222*^9}, {3.797817179268457*^9, 
+  3.797817223244639*^9}},ExpressionUUID->"099af2d3-99c3-4e5e-8be9-\
+fb06491a59bb"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"npop", "=", "1000"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"number", " ", "of", " ", "individuals", " ", "in", " ", "pop"}], 
+   " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ra", "=", ".3"}], ";", 
+  RowBox[{"rA", "=", ".5"}], ";", 
+  RowBox[{"(*", 
+   RowBox[{
+   "The", " ", "two", " ", "sex", " ", "allocation", " ", "strategies"}], 
+   "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"malinds", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"ra", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"npop", "/", "2"}]}], "}"}]}], "]"}]}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Male", " ", "Individuals"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"feminds", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{"ra", ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"npop", "/", "2"}]}], "}"}]}], "]"}]}], ";", " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Female", " ", "Individuals"}], " ", "*)"}], "\[IndentingNewLine]",
+   "\[IndentingNewLine]", 
+  RowBox[{"Do", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"malinds", "[", 
+      RowBox[{"[", "i", "]"}], "]"}], "=", "rA"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "1", ",", "10"}], "}"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Do", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"feminds", "[", 
+       RowBox[{"[", "i", "]"}], "]"}], "=", "rA"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "10"}], "}"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Start", " ", "with", " ", "half", " ", "male", " ", "half", " ", 
+     RowBox[{"female", ".", " ", "The"}], " ", "first", " ", "ten", " ", 
+     "individuals", " ", "have", " ", "genotype", " ", "rA"}], ",", " ", 
+    RowBox[{"the", " ", "rest", " ", "have", " ", "genotype", " ", "ra"}]}], 
+   " ", "*)"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.702312738230562*^9, 3.702312741959258*^9}, {
+   3.702312896286294*^9, 3.702312979063796*^9}, {3.702313027038863*^9, 
+   3.702313069884787*^9}, 3.702313907020069*^9, {3.7023139489590473`*^9, 
+   3.70231394916285*^9}, {3.7337475023070903`*^9, 3.7337475331951723`*^9}, {
+   3.797817153181499*^9, 
+   3.797817162635458*^9}},ExpressionUUID->"b9c2a766-ff85-4026-8e20-\
+2f743ba8eff3"],
+
+Cell["\<\
+After setting the parameters, you can run the simulation with the command \
+\[OpenCurlyDoubleQuote]DoSim\[CloseCurlyDoubleQuote]. This puts the results \
+into the variable proprA. Once this is run you can look at proprA or plot it \
+using the ListPlot command.\
+\>", "Text",
+ CellChangeTimes->{{3.797817200014036*^9, 
+  3.7978172646199007`*^9}},ExpressionUUID->"b788ba48-4eb0-48bb-b2ae-\
+b13d6ef7d104"],
+
+Cell[TextData[{
+ StyleBox["Q2: ",
+  FontWeight->"Bold"],
+ "Plot the percentage of individuals carrying ",
+ StyleBox["rA",
+  FontSlant->"Italic"],
+ " over time. Do this for simulations where \n",
+ StyleBox["a) ra=0.3, rA=0.5\nb) ra=0.7, rA=0.5\nc) ra=0.3, rA=0.7\nd) r \
+values of your own choosing.",
+  FontSlant->"Italic"],
+ "\nExplain your results."
+}], "Text",
+ CellChangeTimes->{{3.6388014706951303`*^9, 3.638801479608142*^9}, {
+  3.638801533046195*^9, 3.6388015772608833`*^9}, {3.6388016408991013`*^9, 
+  3.6388016422925463`*^9}, {3.638801782843693*^9, 3.638801809497746*^9}, {
+  3.638801852930381*^9, 3.6388018848079576`*^9}, {3.670159968175552*^9, 
+  3.670159994053712*^9}, {3.670257099048833*^9, 3.6702571068222857`*^9}, {
+  3.702312263347024*^9, 3.702312281271895*^9}, {3.7023140101563997`*^9, 
+  3.702314090586956*^9}, {3.702314699105626*^9, 
+  3.702314730981412*^9}},ExpressionUUID->"c36ea549-2026-4aed-9cfa-\
+9d5343a3d2dd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Optional: Simulation with mutation", "Section",
+ CellChangeTimes->{{3.607265727204216*^9, 3.607265825297584*^9}, {
+   3.6072804441257544`*^9, 3.607280446723176*^9}, {3.607280709074615*^9, 
+   3.6072807103576193`*^9}, {3.607280902736899*^9, 3.6072809329298573`*^9}, {
+   3.638802866015933*^9, 3.6388029033551817`*^9}, {3.6388030338148127`*^9, 
+   3.6388030344935637`*^9}, 3.638803149897643*^9, {3.70231475071917*^9, 
+   3.702314758628196*^9}, {3.7658016285248747`*^9, 
+   3.7658016328219852`*^9}},ExpressionUUID->"522691d5-f57a-4b4d-ac80-\
+923013fc291a"],
+
+Cell[TextData[{
+ "Now we will use a simulation with many alleles possible at once. In this \
+simulation, each offspring can carry a mutated version of the parental \
+allele.\n",
+ StyleBox["(This simulation may take a few minutes to run. Remember, the \
+shortcut \[OpenCurlyDoubleQuote]alt+.\[CloseCurlyDoubleQuote] will abort any \
+computations currently running. Useful if Mathematica gets stuck computing. )",
+  FontSlant->"Italic"]
+}], "Text",
+ CellChangeTimes->{{3.638803139331696*^9, 3.638803193884966*^9}, {
+  3.702314768663397*^9, 3.702314785745681*^9}, {3.7023150231184263`*^9, 
+  3.7023150298776703`*^9}, {3.7023150599966*^9, 3.702315073308563*^9}, {
+  3.733762588289382*^9, 3.7337625889290504`*^9}, {3.7337629289960165`*^9, 
+  3.73376294326772*^9}, {3.7337630464152527`*^9, 3.7337630476707296`*^9}, {
+  3.7337631351206427`*^9, 
+  3.7337632708214216`*^9}},ExpressionUUID->"e06cbecd-48df-4684-8bac-\
+0a5246bab8e0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"npop", "=", "1000"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"number", " ", "of", " ", "individuals", " ", "in", " ", "pop"}], 
+   " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Mu]", "=", 
+    RowBox[{"10", "^", 
+     RowBox[{"-", "2"}]}]}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{"mutation", " ", "rate"}], " ", "*)"}]}]}], "Input",
+ CellChangeTimes->{{3.6072660970639257`*^9, 3.607266105497581*^9}, {
+   3.6072804362711353`*^9, 3.607280439950552*^9}, {3.607280704901346*^9, 
+   3.607280705115192*^9}, {3.60728115503893*^9, 3.607281178568112*^9}, {
+   3.607281280299088*^9, 3.607281280377041*^9}, {3.6072818300770807`*^9, 
+   3.607281830527207*^9}, {3.60735978895586*^9, 3.607359796583219*^9}, 
+   3.607360233592732*^9, {3.733747722944971*^9, 
+   3.733747724569488*^9}},ExpressionUUID->"500d79c5-cbf7-4518-a336-\
+856c97458c2d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "Below", " ", "are", " ", "lists", " ", "of", " ", "Male", " ", "and", 
+     " ", "Female", " ", 
+     RowBox[{"individuals", ".", " ", "Each"}], " ", "individual", " ", "is", 
+     " ", "represented", " ", "by", " ", "a", " ", "number", " ", "which", 
+     " ", "describes", " ", "their", " ", "sex", " ", "allocation", " ", 
+     RowBox[{"stategy", ".", " ", "In"}], " ", "the", " ", "next", " ", 
+     "generation", " ", "these", " ", "individuals", " ", "will", " ", "be", 
+     " ", "replaced", " ", "by", " ", "their", " ", "offspring"}], ",", " ", 
+    RowBox[{
+    "who", " ", "will", " ", "have", " ", "slightly", " ", "different", " ", 
+     "numbers", " ", 
+     RowBox[{"(", 
+      RowBox[{"because", " ", "of", " ", 
+       RowBox[{"mutation", "."}]}], ")"}]}]}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"malinds", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{".25", ",", 
+       RowBox[{"{", "500", "}"}]}], "]"}]}], ";"}], " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "we", " ", "start", " ", "with", " ", "r", " ", "fixed", " ", "at", " ", 
+     "0.25", " ", "for", " ", "everybody"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"feminds", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{".25", ",", 
+       RowBox[{"{", "500", "}"}]}], "]"}]}], ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.607265727204216*^9, 3.607265825297584*^9}, {
+  3.6072804441257544`*^9, 3.607280446723176*^9}, {3.607280709074615*^9, 
+  3.6072807103576193`*^9}, {3.607280902736899*^9, 3.6072809329298573`*^9}, {
+  3.6072810020494747`*^9, 3.607281007595664*^9}, {3.702314813847282*^9, 
+  3.702314823630363*^9}, {3.7337477383451376`*^9, 3.7337477402088847`*^9}, {
+  3.733762353860499*^9, 3.7337623639006224`*^9}, {3.7337624143803363`*^9, 
+  3.7337624555652046`*^9}, {3.7337626058184586`*^9, 3.7337627017977486`*^9}, {
+  3.7337629060436697`*^9, 3.73376292114751*^9}, {3.7337629879812865`*^9, 
+  3.7337629978057456`*^9}},ExpressionUUID->"13c729b0-5671-48af-bf48-\
+cfddc64a6de0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"tmax", "=", "20000"}], ";"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "The", " ", "number", " ", "of", " ", "generations", " ", "we", " ", 
+    RowBox[{"simulate", ".", " ", "If"}], " ", "the", " ", "simulation", " ", 
+    "is", " ", "taking", " ", "too", " ", "long", " ", "you", " ", "can", " ",
+     "try", " ", "lowering", " ", "this", " ", 
+    RowBox[{"value", "."}]}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.702314896593199*^9, 3.702314914255815*^9}, {
+  3.702314989327054*^9, 3.7023149894423323`*^9}, {3.7337630392011776`*^9, 
+  3.733763128233176*^9}},ExpressionUUID->"614b846e-62be-48c2-b694-\
+d7f7a8d6bb67"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Below", " ", "is", " ", "where", " ", "we", " ", "run", " ", "the", " ", 
+    RowBox[{"simulation", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"meanrdata", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"tmp", "=", 
+        RowBox[{"RandomChoice", "[", 
+         RowBox[{"malinds", ",", 
+          RowBox[{"{", 
+           RowBox[{"Length", "[", "feminds", "]"}], "}"}]}], "]"}]}], ";", 
+       RowBox[{"mates", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"feminds", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], ",", 
+            RowBox[{"tmp", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "1", ",", 
+            RowBox[{"Length", "[", "feminds", "]"}]}], "}"}]}], "]"}]}], ";", 
+       
+       RowBox[{"parents", "=", 
+        RowBox[{"RandomChoice", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{"i", ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", 
+              RowBox[{"Length", "[", "feminds", "]"}]}], "}"}]}], "]"}], ",", 
+          "npop"}], "]"}]}], ";", 
+       RowBox[{"newmal", "=", 
+        RowBox[{"{", "}"}]}], ";", 
+       RowBox[{"newfem", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Random", "[", "]"}], "<", 
+            RowBox[{"mates", "[", 
+             RowBox[{"[", 
+              RowBox[{
+               RowBox[{"parents", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], ",", "1"}], "]"}], "]"}]}], 
+           ",", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"newmal", ",", 
+             RowBox[{
+              RowBox[{"RandomSample", "[", 
+               RowBox[{
+                RowBox[{"mates", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"parents", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ",", "1"}], 
+               "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"newfem", ",", 
+             RowBox[{
+              RowBox[{"RandomSample", "[", 
+               RowBox[{
+                RowBox[{"mates", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"parents", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ",", "1"}], 
+               "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "npop"}], "}"}]}], "]"}], ";", 
+       RowBox[{"malinds", "=", "newmal"}], ";", 
+       RowBox[{"feminds", "=", "newfem"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", "Mutation", "*)"}], " ", 
+       RowBox[{"malmutant", "=", 
+        RowBox[{"RandomSample", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{"i", ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", 
+              RowBox[{"Length", "[", "malinds", "]"}]}], "}"}]}], "]"}], ",", 
+          
+          RowBox[{"Random", "[", 
+           RowBox[{"BinomialDistribution", "[", 
+            RowBox[{
+             RowBox[{"Length", "[", "malinds", "]"}], ",", "\[Mu]"}], "]"}], 
+           "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"femmutant", "=", 
+        RowBox[{"RandomSample", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{"i", ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", "1", ",", 
+              RowBox[{"Length", "[", "feminds", "]"}]}], "}"}]}], "]"}], ",", 
+          
+          RowBox[{"Random", "[", 
+           RowBox[{"BinomialDistribution", "[", 
+            RowBox[{
+             RowBox[{"Length", "[", "feminds", "]"}], ",", "\[Mu]"}], "]"}], 
+           "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"malinds", "[", 
+           RowBox[{"[", 
+            RowBox[{"malmutant", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], "+=", 
+          RowBox[{
+           RowBox[{"0.02", "*", 
+            RowBox[{"Random", "[", "]"}]}], "-", "0.01"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", 
+           RowBox[{"Length", "[", "malmutant", "]"}]}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"feminds", "[", 
+           RowBox[{"[", 
+            RowBox[{"femmutant", "[", 
+             RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], "+=", 
+          RowBox[{
+           RowBox[{"0.02", "*", 
+            RowBox[{"Random", "[", "]"}]}], "-", "0.01"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", 
+           RowBox[{"Length", "[", "femmutant", "]"}]}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", 
+         RowBox[{"Mean", "[", 
+          RowBox[{"Join", "[", 
+           RowBox[{"malinds", ",", "feminds"}], "]"}], "]"}]}], "}"}]}], ",", 
+      
+      RowBox[{"{", 
+       RowBox[{"t", ",", "1", ",", "tmax"}], "}"}]}], "]"}]}], 
+   ";"}]}]], "Input",
+ CellChangeTimes->{{3.60726582197211*^9, 3.607265838512164*^9}, {
+   3.607265944971966*^9, 3.607265959652335*^9}, {3.607265997657546*^9, 
+   3.6072660941245813`*^9}, {3.607280095138133*^9, 3.607280231510829*^9}, {
+   3.607280302373884*^9, 3.6072803984403267`*^9}, {3.607280529121645*^9, 
+   3.60728053139795*^9}, {3.6072806635807734`*^9, 3.607280684044249*^9}, {
+   3.607280769086516*^9, 3.60728077526294*^9}, 3.6072808217927437`*^9, 
+   3.607280937590197*^9, {3.607281022057513*^9, 3.607281066628463*^9}, {
+   3.607281104034233*^9, 3.607281139056466*^9}, {3.607281201190934*^9, 
+   3.607281204048677*^9}, {3.607281622194881*^9, 3.607281674526675*^9}, 
+   3.6072820137400513`*^9, {3.607282210921088*^9, 3.607282212214046*^9}, {
+   3.607359754300453*^9, 3.607359782695614*^9}, {3.607360189589402*^9, 
+   3.607360190150941*^9}, 3.607360253455669*^9, {3.670161001744855*^9, 
+   3.670161007609219*^9}, 3.670260609337174*^9, 3.6702606526615677`*^9, {
+   3.7023148499276876`*^9, 3.7023148505598917`*^9}, {3.70231489004839*^9, 
+   3.702314890526536*^9}, {3.73376329127145*^9, 
+   3.73376332513695*^9}},ExpressionUUID->"e9080b11-30d6-46f0-8ce5-\
+e5153b534476"],
+
+Cell["\<\
+We can plot the fraction of males in the population over time\
+\>", "Text",
+ CellChangeTimes->{{3.702315097594714*^9, 
+  3.702315116341918*^9}},ExpressionUUID->"c3eea7b8-b90a-4594-9387-\
+90e09cd53dcd"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", 
+  RowBox[{"meanrdata", ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "1"}], "}"}]}], ",", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Time\>\"", ",", "\"\<Mean Sex Ratio\>\""}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.607282197742612*^9, {3.670161012199211*^9, 3.670161034317195*^9}, 
+   3.6702606420716133`*^9},ExpressionUUID->"1526240f-8fba-4810-b327-\
+0c365cc4f8f1"],
+
+Cell["\<\
+And we can plot the distribution of allele values at the end of the \
+simulation.\
+\>", "Text",
+ CellChangeTimes->{{3.702315119037758*^9, 
+  3.702315134665329*^9}},ExpressionUUID->"da2d989e-9e38-47b3-a584-\
+fa4425e6ee03"],
+
+Cell[BoxData[
+ RowBox[{"Histogram", "[", "malinds", "]"}]], "Input",
+ CellChangeTimes->{{3.607281993852397*^9, 3.607281994638071*^9}, {
+  3.6072821653746653`*^9, 3.60728217085273*^9}, {3.670161046085807*^9, 
+  3.670161051501358*^9}},ExpressionUUID->"ff851374-baf4-4dab-999e-\
+90c014b309f1"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1398, 887},
+WindowMargins->{{Automatic, 104}, {Automatic, -1080}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (March 18, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"730ebec1-4e55-49ca-b836-b64d02f6fef6"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 167, 3, 146, "Title",ExpressionUUID->"d1203eee-2eef-40ff-a411-52ec80235005"],
+Cell[749, 27, 563, 14, 102, "Input",ExpressionUUID->"53ac49ae-3f10-4969-91e1-225f5cac2864",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[1337, 45, 228, 3, 81, "Subsection",ExpressionUUID->"b02a98d3-5d83-4f51-afd2-51a395b8ab68"],
+Cell[1568, 50, 870, 22, 122, "Text",ExpressionUUID->"0c993889-2653-47e3-b99c-e50af732ce32"],
+Cell[2441, 74, 1267, 30, 109, "Input",ExpressionUUID->"1b4f786b-3527-4727-96b5-5c27684b4b88"],
+Cell[3711, 106, 1150, 25, 122, "Text",ExpressionUUID->"9aea36d4-daab-4b0b-8455-730f50f4b6c8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4898, 136, 380, 6, 101, "Section",ExpressionUUID->"09836ebc-c431-43e9-a1e5-dc96f0b94dca"],
+Cell[5281, 144, 440, 9, 88, "Text",ExpressionUUID->"1de7e24c-3967-41f6-95aa-2bc6dbde4594"],
+Cell[5724, 155, 281, 5, 46, "Input",ExpressionUUID->"69e1feaa-3605-4bed-87d7-94c13609d197"],
+Cell[6008, 162, 432, 7, 46, "Input",ExpressionUUID->"062df0c2-1488-456b-8a23-08b059c32e41"],
+Cell[6443, 171, 374, 10, 46, "Input",ExpressionUUID->"2083602f-e315-4aaa-b50e-c51b236c9bda"],
+Cell[6820, 183, 6217, 142, 574, "Input",ExpressionUUID->"783239ad-9709-48a5-b37b-6850ac7e0d54"],
+Cell[13040, 327, 817, 17, 191, "Text",ExpressionUUID->"099af2d3-99c3-4e5e-8be9-fb06491a59bb"],
+Cell[13860, 346, 2393, 63, 357, "Input",ExpressionUUID->"b9c2a766-ff85-4026-8e20-2f743ba8eff3"],
+Cell[16256, 411, 412, 8, 88, "Text",ExpressionUUID->"b788ba48-4eb0-48bb-b2ae-b13d6ef7d104"],
+Cell[16671, 421, 935, 20, 226, "Text",ExpressionUUID->"c36ea549-2026-4aed-9cfa-9d5343a3d2dd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17643, 446, 559, 8, 101, "Section",ExpressionUUID->"522691d5-f57a-4b4d-ac80-923013fc291a"],
+Cell[18205, 456, 922, 16, 157, "Text",ExpressionUUID->"e06cbecd-48df-4684-8bac-0a5246bab8e0"],
+Cell[19130, 474, 918, 21, 78, "Input",ExpressionUUID->"500d79c5-cbf7-4518-a336-856c97458c2d"],
+Cell[20051, 497, 2089, 44, 171, "Input",ExpressionUUID->"13c729b0-5671-48af-bf48-cfddc64a6de0"],
+Cell[22143, 543, 670, 14, 78, "Input",ExpressionUUID->"614b846e-62be-48c2-b694-d7f7a8d6bb67"],
+Cell[22816, 559, 6576, 162, 605, "Input",ExpressionUUID->"e9080b11-30d6-46f0-8ce5-e5153b534476"],
+Cell[29395, 723, 211, 5, 69, "Text",ExpressionUUID->"c3eea7b8-b90a-4594-9387-90e09cd53dcd"],
+Cell[29609, 730, 491, 13, 72, "Input",ExpressionUUID->"1526240f-8fba-4810-b327-0c365cc4f8f1"],
+Cell[30103, 745, 231, 6, 69, "Text",ExpressionUUID->"da2d989e-9e38-47b3-a584-fa4425e6ee03"],
+Cell[30337, 753, 290, 5, 72, "Input",ExpressionUUID->"ff851374-baf4-4dab-999e-90c014b309f1"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
