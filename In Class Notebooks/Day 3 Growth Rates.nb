@@ -1,0 +1,713 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     27942,        705]
+NotebookOptionsPosition[     23304,        635]
+NotebookOutlinePosition[     23732,        652]
+CellTagsIndexPosition[     23689,        649]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Population Growth", "Section",
+ CellChangeTimes->{{3.575203055822695*^9, 3.575203118753577*^9}, {
+  3.6681881711123657`*^9, 3.668188190215109*^9}, {3.79518859398414*^9, 
+  3.795188596569582*^9}},ExpressionUUID->"07daf21a-0457-453c-8d52-\
+daee3022fdcd"],
+
+Cell[CellGroupData[{
+
+Cell["Key", "Subsection",
+ CellChangeTimes->{{3.731944979686615*^9, 
+  3.731944983871191*^9}},ExpressionUUID->"c1769411-45bf-4d17-a436-\
+1dfc18128e21"],
+
+Cell[TextData[{
+ " Continuous Time Model",
+ StyleBox["\nr\t ",
+  FontWeight->"Bold"],
+ "-- birth rate - death rate for continuous time model\n\n Discrete Time \
+Model\n ",
+ StyleBox["d\t",
+  FontWeight->"Bold"],
+ " -- an individual\[CloseCurlyQuote]s probability of dying\n",
+ StyleBox["(1-d)\t",
+  FontWeight->"Bold"],
+ " -- an individuals probability of not dying\n\n",
+ StyleBox["b\t",
+  FontWeight->"Bold"],
+ " -- an individual\[CloseCurlyQuote]s probability of producing a single \
+offspring\n",
+ StyleBox["(1-b)\t",
+  FontWeight->"Bold"],
+ " -- an individuals probability of not reproducing\n"
+}], "Text",
+ CellChangeTimes->{{3.7319449865684314`*^9, 3.7319453204121485`*^9}, {
+  3.795192560318982*^9, 
+  3.79519264635398*^9}},ExpressionUUID->"3e571148-e862-41bf-8b14-\
+7ccb974cf607"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Continuous time growth", "Subsection",
+ CellChangeTimes->{{3.575203162651943*^9, 3.5752031715998774`*^9}, {
+  3.606148373755657*^9, 3.60614837669942*^9}, {3.668188200511747*^9, 
+  3.66818820359048*^9}, {3.795188607305901*^9, 
+  3.795188615083247*^9}},ExpressionUUID->"d5685dc7-309c-4af5-b466-\
+a2380d99b8bd"],
+
+Cell["\<\
+We won\[CloseCurlyQuote]t use differential equations much in this class, but \
+right now I want to show how the continuous time an discrete time versions \
+match up. 
+Given our differential equation, we can ask Mathematica to find the solution \
+for us:\
+\>", "Text",
+ CellChangeTimes->{{3.8266758487503967`*^9, 3.826675874706126*^9}, {
+  3.826675956294286*^9, 
+  3.826675989272468*^9}},ExpressionUUID->"9357c9ac-7656-4f08-bef8-\
+415aeef3531e"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", 
+  RowBox[{"b", ",", "d", ",", "r", ",", "n"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8901496565425386`*^9, 3.890149662024901*^9}, {
+  3.890149696177801*^9, 3.890149696433729*^9}},
+ CellLabel->"In[83]:=",ExpressionUUID->"0fd6a627-be15-4608-ad99-062825e74b76"],
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     RowBox[{"n", "[", "t", "]"}], ",", "t"}], "]"}], "\[Equal]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"n", "[", "t", "]"}], "*", "b"}], " ", "-", " ", 
+    RowBox[{
+     RowBox[{"n", "[", "t", "]"}], " ", "*", " ", "d"}]}], " ", "==", 
+   RowBox[{
+    RowBox[{"n", "[", "t", "]"}], "*", 
+    RowBox[{"(", 
+     RowBox[{"b", " ", "-", " ", "d"}], ")"}]}], "==", 
+   RowBox[{
+    RowBox[{"n", "[", "t", "]"}], "*", "r", " "}]}]}]], "Input",
+ CellChangeTimes->{{3.826716093488158*^9, 3.8267161473204327`*^9}},
+ CellLabel->"In[84]:=",ExpressionUUID->"474d91fb-3e83-46c4-9bbe-25a885723be7"],
+
+Cell[BoxData[
+ RowBox[{"r", "=", 
+  RowBox[{"b", "-", "d"}]}]], "Input",
+ CellChangeTimes->{{3.826716149953865*^9, 3.82671615114327*^9}},
+ CellLabel->"In[76]:=",ExpressionUUID->"7804df8c-5607-467e-979f-75f56d0f6394"],
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"D", "[", 
+       RowBox[{
+        RowBox[{"n", "[", "t", "]"}], ",", "t"}], "]"}], "\[Equal]", 
+      RowBox[{"r", "*", 
+       RowBox[{"n", "[", "t", "]"}]}]}], "  ", ",", " ", 
+     RowBox[{
+      RowBox[{"n", "[", "0", "]"}], "\[Equal]", "n0"}]}], "}"}], ",", 
+   RowBox[{"n", "[", "t", "]"}], ",", "t"}], "]"}]], "Input",
+ CellChangeTimes->{{3.795188763215169*^9, 3.7951887781627903`*^9}, {
+  3.795188904198083*^9, 3.795188930980976*^9}},
+ CellLabel->"In[36]:=",ExpressionUUID->"79c5aae9-10ff-4b05-8035-cca305e866e3"],
+
+Cell["\<\
+We can write this as a function that we can this use more generally. \
+\>", "Text",
+ CellChangeTimes->{{3.826675879859107*^9, 
+  3.826675908968652*^9}},ExpressionUUID->"ea75869d-832d-4492-a0ab-\
+63e52e60121f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n", "[", 
+   RowBox[{"r_", ",", "t_"}], "]"}], ":=", 
+  RowBox[{"n0", " ", "*", " ", 
+   RowBox[{"Exp", "[", 
+    RowBox[{"r", "*", "t"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.795188966006575*^9, 3.795188980053475*^9}, {
+  3.795189183715927*^9, 3.795189212499155*^9}},
+ CellLabel->"In[89]:=",ExpressionUUID->"41277588-d1fa-4331-aeaa-5c1ade1d678b"],
+
+Cell["We can plot population size as a function of time.", "Text",
+ CellChangeTimes->{{3.795188941546536*^9, 3.795188950821311*^9}, {
+  3.795189529847343*^9, 
+  3.79518953793964*^9}},ExpressionUUID->"07f78a15-aaf0-4c5c-a720-\
+f8665f55d5ff"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n0", "=", "1"}], ";", 
+  RowBox[{"continuousplot", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"n", "[", 
+      RowBox[{"0.1", ",", "t"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "50"}], "}"}], " ", ",", " ", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time\>\"", ",", "\"\<Population Size\>\""}], "}"}]}]}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.795188935862328*^9, 3.7951890028507633`*^9}, {
+  3.7951892211356564`*^9, 3.795189225462824*^9}, {3.795189540656433*^9, 
+  3.79518955845461*^9}, {3.795190838102207*^9, 3.795190844273608*^9}, {
+  3.795192512144973*^9, 3.795192514561913*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"15e32c84-1713-4628-83e7-c90639e8d9b3"],
+
+Cell["\<\
+We can also use the manipulate function in Mathematica to explore changing a \
+parameter. The \[OpenCurlyDoubleQuote]Manipulate\[CloseCurlyDoubleQuote] \
+command is a bit fragile, parameters to manipulate have to be passed through \
+functions or written as formulas in the command itself. Here we allow the \
+parameter \[OpenCurlyDoubleQuote]r\[CloseCurlyDoubleQuote] to vary between 0 \
+and 0.1.\
+\>", "Text",
+ CellChangeTimes->{{3.795189010576743*^9, 3.7951890259204884`*^9}, {
+  3.7951890830480547`*^9, 3.795189108234956*^9}, {3.795189371175086*^9, 
+  3.795189405456355*^9}, {3.795190376092661*^9, 
+  3.795190396105343*^9}},ExpressionUUID->"a8df1a11-d712-497d-8cbd-\
+ce57a4d54e6e"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"n", "[", 
+      RowBox[{"r", ",", "t"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "50"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "50"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "150"}], "}"}]}], "}"}]}], ",", " ", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time\>\"", ",", "\"\<Population Size\>\""}], "}"}]}]}], 
+    "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", "0.05"}], "}"}], ",", 
+     RowBox[{"-", "0.1"}], ",", ".1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7951899945356073`*^9, 3.7951899955756397`*^9}, {
+   3.795190855095478*^9, 3.795190857547852*^9}, {3.826716728275127*^9, 
+   3.826716728619638*^9}, {3.826716788596418*^9, 3.8267168074652967`*^9}, 
+   3.826716953367446*^9, {3.826716987395522*^9, 3.826716988838785*^9}},
+ CellLabel->"In[39]:=",ExpressionUUID->"a4145aa5-0961-4b2b-8446-7c13f5d11e3d"],
+
+Cell["We could also see what happens if r is negative:", "Text",
+ CellChangeTimes->{{3.795190542099052*^9, 
+  3.795190566995584*^9}},ExpressionUUID->"3463a8bb-4979-4fbc-b148-\
+b20af8db2b5e"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"n", "[", 
+      RowBox[{"t", ",", "r"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "50"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "50"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", " ", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time\>\"", ",", "\"\<Population Size\>\""}], "}"}]}]}], 
+    "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", 
+       RowBox[{"-", "0.1"}]}], "}"}], ",", 
+     RowBox[{"-", "0.1"}], ",", "0"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7951899945356073`*^9, 3.7951899955756397`*^9}, {
+  3.795190580067127*^9, 3.795190601991537*^9}, {3.795190723767375*^9, 
+  3.79519072526448*^9}, {3.795190867712256*^9, 3.795190867996025*^9}},
+ CellLabel->"In[40]:=",ExpressionUUID->"da8a2791-f479-42b9-92c0-8d55351b62d9"],
+
+Cell["\<\
+We can also plot on a log plot. You may have heard of these lately... \
+Exponential growth looks linear on a log scale. Here we can vary r from -0.1 \
+to +0.1 to see better what happens when growth is + or -. It looks really \
+boring! On the log scale, exponential growth is just lines. \
+\>", "Text",
+ CellChangeTimes->{{3.795190349882826*^9, 3.795190372312717*^9}, {
+  3.795190512434948*^9, 3.795190536651657*^9}, {3.795190753035232*^9, 
+  3.795190755301849*^9}, {3.826676147386423*^9, 
+  3.8266761607460327`*^9}},ExpressionUUID->"b0d617f9-cafa-4719-b66e-\
+f76535619e82"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Log", "[", 
+      RowBox[{"n", "[", 
+       RowBox[{"t", ",", "r"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "50"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "50"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "4"}], ",", "4"}], "}"}]}], "}"}]}], ",", " ", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time\>\"", ",", "\"\<Log Population Size\>\""}], 
+       "}"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", ".1"}], ",", ".1"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.795189114007989*^9, 3.7951891875272007`*^9}, {
+  3.7951893470702353`*^9, 3.795189362559971*^9}, {3.795189475384807*^9, 
+  3.79518950964852*^9}, {3.7951908762840548`*^9, 3.795190878928299*^9}},
+ CellLabel->"In[41]:=",ExpressionUUID->"9b3342ee-4929-423d-b359-7b39ebd9cb86"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Discrete time growth", "Subsection",
+ CellChangeTimes->{{3.575203162651943*^9, 3.5752031715998774`*^9}, {
+  3.606148373755657*^9, 3.60614837669942*^9}, {3.668188200511747*^9, 
+  3.66818820359048*^9}, {3.795188607305901*^9, 3.795188615083247*^9}, {
+  3.795191196678565*^9, 
+  3.7951911978499804`*^9}},ExpressionUUID->"8c619de2-a12a-4705-9aed-\
+4119883ad783"],
+
+Cell[TextData[{
+ "We\[CloseCurlyQuote]ll work with recursion equations a lot in class. It\
+\[CloseCurlyQuote]s a little tricky to write them in a way that we can use \
+them in Mathematica, because we often use notation when writing like ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["n", 
+     RowBox[{"t", "+", "1"}]], "=", 
+    RowBox[{"f", "(", 
+     SubscriptBox["n", "t"], ")"}]}], TraditionalForm]],ExpressionUUID->
+  "73c09788-4708-43ca-95e4-0e3df75b5878"],
+ ", but Mathematica won\[CloseCurlyQuote]t like that. So we define updating \
+function,  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"f", "(", 
+    SubscriptBox["n", "t"], ")"}], TraditionalForm]],ExpressionUUID->
+  "b25109c3-7d90-4854-bdf9-44a753828e70"],
+ ", and then typically use a Table or Do loop to repeatedly apply it. "
+}], "Text",
+ CellChangeTimes->{{3.826676184077911*^9, 3.826676188296756*^9}, {
+  3.826676379417923*^9, 
+  3.826676575923451*^9}},ExpressionUUID->"9aee86ea-1a2f-4f1f-99af-\
+406aa983ff38"],
+
+Cell["\<\
+Here is our recursion equation for the birth/death growth model.\
+\>", "Text",
+ CellChangeTimes->{{3.795191395508017*^9, 3.795191406117532*^9}, {
+  3.7951920971200533`*^9, 3.795192098392179*^9}, {3.826676658956002*^9, 
+  3.826676682249888*^9}},ExpressionUUID->"d7ef3064-a53a-4b0b-8e4e-\
+f7301c6de1b7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nup", "[", "n_", "]"}], ":=", " ", 
+  RowBox[{"n", "*", 
+   RowBox[{"(", 
+    RowBox[{"1", "-", "d"}], ")"}], 
+   RowBox[{"(", 
+    RowBox[{"1", "+", "b"}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.795191408203157*^9, 3.795191432860121*^9}},
+ CellLabel->"In[42]:=",ExpressionUUID->"feabb5b2-4f59-4e80-b424-cf4be1f97392"],
+
+Cell["\<\
+We can ask, how many mice will there be in the next generation if there are \
+10 now:\
+\>", "Text",
+ CellChangeTimes->{{3.8266766896618423`*^9, 
+  3.826676708396872*^9}},ExpressionUUID->"d650a1af-af13-42fc-87a7-\
+9b041f45c4b4"],
+
+Cell[BoxData[
+ RowBox[{"nup", "[", "10", "]"}]], "Input",
+ CellChangeTimes->{{3.795268962737329*^9, 3.7952689774761047`*^9}},
+ CellLabel->"In[43]:=",ExpressionUUID->"d11cd47e-fffa-4a23-8222-fafdc31bbfec"],
+
+Cell["\<\
+In the lecture notes, I derived a solution to this recursion equation. This \
+equation is now a function of time, and requires knowing the initial \
+population size at time step 0. \
+\>", "Text",
+ CellChangeTimes->{{3.795191437721714*^9, 3.795191460444982*^9}, 
+   3.7951929201303*^9, {3.826676714855679*^9, 3.826676744100025*^9}, {
+   3.826676929526127*^9, 
+   3.826676945694297*^9}},ExpressionUUID->"a53a1927-9c23-4395-9719-\
+f70a8e1db3dc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"nt", "[", "t_", "]"}], ":=", 
+  RowBox[{"n0", " ", "*", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "d"}], ")"}], 
+      RowBox[{"(", 
+       RowBox[{"1", "+", "b"}], ")"}]}], ")"}], "^", "t"}]}]}]], "Input",
+ CellChangeTimes->{{3.795191467780504*^9, 3.79519151664799*^9}},
+ CellLabel->"In[44]:=",ExpressionUUID->"c9810642-dcfd-4de0-bd69-228aff2eb69e"],
+
+Cell[BoxData[
+ RowBox[{"R0", " ", "\[Equal]", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"1", "-", "d"}], ")"}], 
+   RowBox[{"(", 
+    RowBox[{"1", "+", "b"}], ")"}]}]}]], "Input",
+ CellChangeTimes->{{3.826717519259557*^9, 3.826717536476062*^9}},
+ CellLabel->"In[45]:=",ExpressionUUID->"1ccf61af-7e4d-42d4-9a3f-9100f87e3f31"],
+
+Cell["\<\
+We can use it to see what the population size would be some time in the \
+future.  Without putting in values for d and b, it just tells us what we \
+already know, that at time t there will be R0^t more individuals. \
+\>", "Text",
+ CellChangeTimes->{{3.826676959471092*^9, 3.826676981529545*^9}, {
+  3.826677158827202*^9, 
+  3.8266772184324083`*^9}},ExpressionUUID->"fa1bdcd0-195f-4a5a-9086-\
+4788ec1decd3"],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "n0", "]"}]], "Input",
+ CellChangeTimes->{{3.8267176665117188`*^9, 3.826717668558473*^9}},
+ CellLabel->"In[46]:=",ExpressionUUID->"810b7718-1472-461d-9c04-e62fd5ccf492"],
+
+Cell[BoxData[
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"nt", "[", "t", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "1", ",", "5"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{3.7952692498934717`*^9},
+ CellLabel->"In[47]:=",ExpressionUUID->"2d827c09-7ec5-4a59-a091-93540ccffc9f"],
+
+Cell["\<\
+Now we will put in values for the parameters and graph the population size. \
+\>", "Text",
+ CellChangeTimes->{{3.826677221735341*^9, 3.82667722980963*^9}, {
+  3.826677266074562*^9, 
+  3.826677275590089*^9}},ExpressionUUID->"19222148-89ad-4b40-add7-\
+755f6dc4e3e4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n0", "=", "1"}], ";", 
+  RowBox[{"d", "=", ".1"}], ";", 
+  RowBox[{"b", "=", "0.22"}], ";"}]], "Input",
+ CellChangeTimes->{{3.8267179057182417`*^9, 3.8267179065889397`*^9}},
+ CellLabel->"In[48]:=",ExpressionUUID->"caa76e5e-252c-49df-a262-a9c75eac0387"],
+
+Cell[BoxData[
+ RowBox[{"Table", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"t", ",", 
+     RowBox[{"nt", "[", "t", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "1", ",", "5"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.82671785488358*^9, 3.826717865900622*^9}, {
+  3.826717915216207*^9, 3.826717916049424*^9}},
+ CellLabel->"In[49]:=",ExpressionUUID->"cd130100-c0f5-419e-9957-505d43191f14"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n0", "=", "1"}], ";", 
+  RowBox[{"d", "=", ".1"}], ";", 
+  RowBox[{"b", "=", "0.22"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"discreteplot", "=", 
+  RowBox[{"ListPlot", "[", 
+   RowBox[{
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"nt", "[", "t", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "1", ",", "50"}], "}"}]}], "]"}], ",", 
+    RowBox[{"PlotRange", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "50"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "150"}], "}"}]}], "}"}]}], ",", 
+    RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+    RowBox[{"FrameLabel", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Time\>\"", ",", "\"\<Population Size\>\""}], "}"}]}]}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.795191524586673*^9, 3.795191548255199*^9}, {
+   3.7951922969561987`*^9, 3.79519233038522*^9}, {3.795192449229569*^9, 
+   3.795192504819892*^9}, 3.7951926811605797`*^9, {3.7951929604489737`*^9, 
+   3.795192962653921*^9}, {3.7952693177869473`*^9, 3.795269326355544*^9}, {
+   3.826677288924822*^9, 3.826677322421728*^9}, {3.890149873645294*^9, 
+   3.890149882795364*^9}},
+ CellLabel->"In[58]:=",ExpressionUUID->"6283b53d-cda8-4ab4-b872-9a577ff6e8df"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Comparing the two time growth", "Subsection",
+ CellChangeTimes->{{3.575203162651943*^9, 3.5752031715998774`*^9}, {
+  3.606148373755657*^9, 3.60614837669942*^9}, {3.668188200511747*^9, 
+  3.66818820359048*^9}, {3.795188607305901*^9, 3.795188615083247*^9}, {
+  3.795191203492568*^9, 
+  3.795191209158799*^9}},ExpressionUUID->"3ea34aa0-8b56-4c4d-8049-\
+e42c5bd15758"],
+
+Cell["\<\
+We need to choose parameters that make the models equivalent. To do this we \
+use the formula that Log[R0] = r . Since there are two parameters in our R0 \
+(i.e. R0 = (1-d)(1+b)) we just set one parameter as we choose.\
+\>", "Text",
+ CellChangeTimes->{{3.795192969241693*^9, 3.795193000682489*^9}, {
+   3.795193057011036*^9, 3.7951930885401983`*^9}, 
+   3.89015053056347*^9},ExpressionUUID->"8b11ec52-64a0-4416-a1ed-\
+62ee9661a7c2"],
+
+Cell["Set the continuous time growth rate to 0.2", "Text",
+ CellChangeTimes->{{3.826677368913522*^9, 
+  3.826677378182447*^9}},ExpressionUUID->"c77ab89a-75cb-412f-80bd-\
+66567156e143"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"rcont", "=", 
+   RowBox[{"-", "0.2"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.795270387064662*^9, 3.7952703969276733`*^9}, {
+  3.8267190334594*^9, 3.826719033680627*^9}},
+ CellLabel->"In[60]:=",ExpressionUUID->"b5cddc5f-b420-4b00-952f-5519402c4605"],
+
+Cell["\<\
+We\[CloseCurlyQuote]ll set the discrete time mortality rate to 0.1, and then \
+solve for the birth rate that will produce an equivalent growth trajectory to \
+the continuous time model. \
+\>", "Text",
+ CellChangeTimes->{{3.826677381699326*^9, 3.826677421328333*^9}, {
+  3.826850213098716*^9, 
+  3.826850213417808*^9}},ExpressionUUID->"a5c92c7f-a3c2-4887-b802-\
+9a537c48c709"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "b", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"d", "=", "0.4"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Log", "[", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "d"}], ")"}], "*", 
+      RowBox[{"(", 
+       RowBox[{"1", "+", "b"}], ")"}]}], " ", "]"}], "\[Equal]", "rcont"}], 
+   ",", " ", "b"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.795192245788336*^9, 3.795192292437222*^9}, {
+   3.7951926622429323`*^9, 3.7951926713016567`*^9}, {3.795193045201634*^9, 
+   3.7951930518711443`*^9}, {3.7952703709377203`*^9, 3.795270401460081*^9}, {
+   3.826718084473709*^9, 3.8267180866385527`*^9}, 3.826719041906831*^9},
+ CellLabel->"In[61]:=",ExpressionUUID->"4ac03385-7161-49f5-aa4a-817ab656c431"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n0", "=", "1"}], ";", 
+  RowBox[{"d", "=", ".4"}], ";", 
+  RowBox[{"b", "=", "0.3654175733522`"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"discreteplot", "=", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"nt", "[", "t", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "1", ",", "50"}], "}"}]}], "]"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", "50"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time\>\"", ",", "\"\<Population Size\>\""}], "}"}]}], ",",
+      " ", 
+     RowBox[{"PlotStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"PointSize", "\[Rule]", ".02"}], ",", "Red"}], "}"}]}]}], 
+    "]"}]}], ";", 
+  RowBox[{"continuousplot", "=", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"n", "[", 
+      RowBox[{"rcont", ",", "t"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "50"}], "}"}], " ", ",", " ", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"FrameLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Time\>\"", ",", "\"\<Population Size\>\""}], "}"}]}], ",", 
+     RowBox[{"PlotRange", "->", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Show", "[", 
+  RowBox[{"discreteplot", ",", "continuousplot"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.795191524586673*^9, 3.795191548255199*^9}, {
+   3.7951922969561987`*^9, 3.79519233038522*^9}, {3.795192449229569*^9, 
+   3.795192504819892*^9}, 3.7951926811605797`*^9, {3.7951929604489737`*^9, 
+   3.795192962653921*^9}, 3.795193033111244*^9, {3.795193102392063*^9, 
+   3.795193220291782*^9}, {3.795270409803877*^9, 3.795270422362554*^9}, {
+   3.826719049049595*^9, 3.826719079842173*^9}, {3.890150000316152*^9, 
+   3.890150007859318*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"c1887460-66dc-41ad-a8c8-48ba81159b81"],
+
+Cell[CellGroupData[{
+
+Cell["Try it yourself!", "Subsubsection",
+ CellChangeTimes->{{3.8266772448819103`*^9, 
+  3.826677251160694*^9}},ExpressionUUID->"5de81b28-5df7-48f8-96e5-\
+14a05a9b7cd8"],
+
+Cell["\<\
+Now try this on your own, change r and see if you can make a discrete time \
+model that matches it.\
+\>", "Text",
+ CellChangeTimes->{{3.795193236510378*^9, 
+  3.79519326526989*^9}},ExpressionUUID->"72161ed7-34fa-4301-bed0-\
+db520b424c34"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{1163, 856},
+WindowMargins->{{163, Automatic}, {-6, Automatic}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"13.2 for Mac OS X x86 (64-bit) (January 30, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"506b36a2-e3ad-4130-b5e3-681e8bf5ce16"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 258, 4, 101, "Section",ExpressionUUID->"07daf21a-0457-453c-8d52-daee3022fdcd"],
+Cell[CellGroupData[{
+Cell[863, 30, 151, 3, 81, "Subsection",ExpressionUUID->"c1769411-45bf-4d17-a436-1dfc18128e21"],
+Cell[1017, 35, 789, 23, 364, "Text",ExpressionUUID->"3e571148-e862-41bf-8b14-7ccb974cf607"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[1843, 63, 314, 5, 55, "Subsection",ExpressionUUID->"d5685dc7-309c-4af5-b466-a2380d99b8bd"],
+Cell[2160, 70, 454, 10, 122, "Text",ExpressionUUID->"9357c9ac-7656-4f08-bef8-415aeef3531e"],
+Cell[2617, 82, 297, 5, 46, "Input",ExpressionUUID->"0fd6a627-be15-4608-ad99-062825e74b76"],
+Cell[2917, 89, 663, 18, 46, "Input",ExpressionUUID->"474d91fb-3e83-46c4-9bbe-25a885723be7"],
+Cell[3583, 109, 216, 4, 46, "Input",ExpressionUUID->"7804df8c-5607-467e-979f-75f56d0f6394"],
+Cell[3802, 115, 635, 16, 46, "Input",ExpressionUUID->"79c5aae9-10ff-4b05-8035-cca305e866e3"],
+Cell[4440, 133, 219, 5, 53, "Text",ExpressionUUID->"ea75869d-832d-4492-a0ab-63e52e60121f"],
+Cell[4662, 140, 388, 9, 46, "Input",ExpressionUUID->"41277588-d1fa-4331-aeaa-5c1ade1d678b"],
+Cell[5053, 151, 240, 4, 53, "Text",ExpressionUUID->"07f78a15-aaf0-4c5c-a720-f8665f55d5ff"],
+Cell[5296, 157, 834, 19, 109, "Input",ExpressionUUID->"15e32c84-1713-4628-83e7-c90639e8d9b3"],
+Cell[6133, 178, 694, 12, 122, "Text",ExpressionUUID->"a8df1a11-d712-497d-8cbd-ce57a4d54e6e"],
+Cell[6830, 192, 1197, 30, 78, "Input",ExpressionUUID->"a4145aa5-0961-4b2b-8446-7c13f5d11e3d"],
+Cell[8030, 224, 190, 3, 53, "Text",ExpressionUUID->"3463a8bb-4979-4fbc-b148-b20af8db2b5e"],
+Cell[8223, 229, 1139, 30, 78, "Input",ExpressionUUID->"da8a2791-f479-42b9-92c0-8d55351b62d9"],
+Cell[9365, 261, 583, 10, 122, "Text",ExpressionUUID->"b0d617f9-cafa-4719-b66e-f76535619e82"],
+Cell[9951, 273, 1184, 31, 78, "Input",ExpressionUUID->"9b3342ee-4929-423d-b359-7b39ebd9cb86"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[11172, 309, 363, 6, 55, "Subsection",ExpressionUUID->"8c619de2-a12a-4705-9aed-4119883ad783"],
+Cell[11538, 317, 988, 24, 159, "Text",ExpressionUUID->"9aee86ea-1a2f-4f1f-99af-406aa983ff38"],
+Cell[12529, 343, 311, 6, 53, "Text",ExpressionUUID->"d7ef3064-a53a-4b0b-8e4e-f7301c6de1b7"],
+Cell[12843, 351, 357, 9, 46, "Input",ExpressionUUID->"feabb5b2-4f59-4e80-b424-cf4be1f97392"],
+Cell[13203, 362, 237, 6, 53, "Text",ExpressionUUID->"d650a1af-af13-42fc-87a7-9b041f45c4b4"],
+Cell[13443, 370, 204, 3, 46, "Input",ExpressionUUID->"d11cd47e-fffa-4a23-8222-fafdc31bbfec"],
+Cell[13650, 375, 452, 9, 88, "Text",ExpressionUUID->"a53a1927-9c23-4395-9719-f70a8e1db3dc"],
+Cell[14105, 386, 438, 12, 46, "Input",ExpressionUUID->"c9810642-dcfd-4de0-bd69-228aff2eb69e"],
+Cell[14546, 400, 328, 8, 46, "Input",ExpressionUUID->"1ccf61af-7e4d-42d4-9a3f-9100f87e3f31"],
+Cell[14877, 410, 416, 8, 88, "Text",ExpressionUUID->"fa1bdcd0-195f-4a5a-9086-4788ec1decd3"],
+Cell[15296, 420, 206, 3, 46, "Input",ExpressionUUID->"810b7718-1472-461d-9c04-e62fd5ccf492"],
+Cell[15505, 425, 293, 7, 46, "Input",ExpressionUUID->"2d827c09-7ec5-4a59-a091-93540ccffc9f"],
+Cell[15801, 434, 274, 6, 53, "Text",ExpressionUUID->"19222148-89ad-4b40-add7-755f6dc4e3e4"],
+Cell[16078, 442, 287, 6, 46, "Input",ExpressionUUID->"caa76e5e-252c-49df-a262-a9c75eac0387"],
+Cell[16368, 450, 419, 10, 46, "Input",ExpressionUUID->"cd130100-c0f5-419e-9957-505d43191f14"],
+Cell[16790, 462, 1286, 31, 109, "Input",ExpressionUUID->"6283b53d-cda8-4ab4-b872-9a577ff6e8df"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[18113, 498, 370, 6, 55, "Subsection",ExpressionUUID->"3ea34aa0-8b56-4c4d-8049-e42c5bd15758"],
+Cell[18486, 506, 442, 8, 122, "Text",ExpressionUUID->"8b11ec52-64a0-4416-a1ed-62ee9661a7c2"],
+Cell[18931, 516, 184, 3, 53, "Text",ExpressionUUID->"c77ab89a-75cb-412f-80bd-66567156e143"],
+Cell[19118, 521, 286, 6, 46, "Input",ExpressionUUID->"b5cddc5f-b420-4b00-952f-5519402c4605"],
+Cell[19407, 529, 385, 8, 88, "Text",ExpressionUUID->"a5c92c7f-a3c2-4887-b802-9a537c48c709"],
+Cell[19795, 539, 820, 19, 109, "Input",ExpressionUUID->"4ac03385-7161-49f5-aa4a-817ab656c431"],
+Cell[20618, 560, 2201, 55, 233, "Input",ExpressionUUID->"c1887460-66dc-41ad-a8c8-48ba81159b81"],
+Cell[CellGroupData[{
+Cell[22844, 619, 169, 3, 67, "Subsubsection",ExpressionUUID->"5de81b28-5df7-48f8-96e5-14a05a9b7cd8"],
+Cell[23016, 624, 248, 6, 53, "Text",ExpressionUUID->"72161ed7-34fa-4301-bed0-db520b424c34"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
