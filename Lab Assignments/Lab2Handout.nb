@@ -1,0 +1,773 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     30667,        765]
+NotebookOptionsPosition[     25665,        687]
+NotebookOutlinePosition[     26060,        703]
+CellTagsIndexPosition[     26017,        700]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Risk of extinction for rare invading populations", "Section",
+ CellChangeTimes->{{3.575203055822695*^9, 3.575203118753577*^9}, {
+  3.6681881711123657`*^9, 
+  3.668188190215109*^9}},ExpressionUUID->"3c64fda3-418b-41c7-93b0-\
+b10fd77c456f"],
+
+Cell[CellGroupData[{
+
+Cell["Key", "Subsection",
+ CellChangeTimes->{{3.731944979686615*^9, 
+  3.731944983871191*^9}},ExpressionUUID->"b4d99cf9-8b0e-4e1c-9524-\
+2f804b5e9208"],
+
+Cell[TextData[{
+ StyleBox["d\t ",
+  FontWeight->"Bold"],
+ "-- an individual\[CloseCurlyQuote]s probability of dying\n",
+ StyleBox["(1-d)\t",
+  FontWeight->"Bold"],
+ " -- an individual\[CloseCurlyQuote]s probability of not dying\n \n",
+ StyleBox["b\t",
+  FontWeight->"Bold"],
+ " -- an individual\[CloseCurlyQuote]s probability of producing a single \
+offspring\n",
+ StyleBox["(1-b)\t",
+  FontWeight->"Bold"],
+ " -- an individuals probability of not reproducing\n\n",
+ StyleBox["pex1\t",
+  FontWeight->"Bold"],
+ " -- the probability that the population goes extinct when there is one \
+individual \n",
+ StyleBox["pex2\t",
+  FontWeight->"Bold"],
+ " -- the probability that the population goes extinct when there are two \
+individuals\n\n",
+ StyleBox["Note: because all these values are probabilities they must be \
+between 0 and 1.",
+  FontSlant->"Italic"]
+}], "Text",
+ CellChangeTimes->{{3.7319449865684314`*^9, 
+  3.7319453204121485`*^9}},ExpressionUUID->"7ee3d98a-b9d1-4bcc-b833-\
+dcd685fabbce"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculations from class:", "Subsection",
+ CellChangeTimes->{{3.575203162651943*^9, 3.5752031715998774`*^9}, {
+  3.606148373755657*^9, 3.60614837669942*^9}, {3.668188200511747*^9, 
+  3.66818820359048*^9}},ExpressionUUID->"9ce326e8-be3a-4c4f-b44e-\
+bb5a1c80c50b"],
+
+Cell["\<\
+In class we derived a simple model to track the number of individuals \
+invading a novel habitat. This model assumes that each individual has a fixed \
+chance of dying during each time step and that each living individual has a \
+fixed probability of reproducing. We assumed that there is no regulation of \
+these processes at the population level.\
+\>", "Text",
+ CellChangeTimes->{
+  3.668188215384488*^9},ExpressionUUID->"9b75cade-03c3-4965-9fa6-\
+e1cc23549e8e"],
+
+Cell["\<\
+We assumed that each individual had the same probability of dying (d) and the \
+same probability of producing a single additional offspring (b). This led to \
+an equation for the probability of extinction when there is a single \
+individual in the initial population:\
+\>", "Text",
+ CellChangeTimes->{{3.668188225790711*^9, 3.668188226134918*^9}, {
+  3.668188290118391*^9, 3.668188301149274*^9}, {3.668188338215231*^9, 
+  3.668188372437505*^9}, {3.7319449173266068`*^9, 
+  3.7319449298594007`*^9}},ExpressionUUID->"6fe34804-fa55-4181-9711-\
+11f0f4616097"],
+
+Cell[BoxData[
+ RowBox[{"pex1", "\[Equal]", 
+  RowBox[{"d", " ", "+", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "b"}], ")"}], "*", "pex1"}], " ", "+", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}], 
+    RowBox[{"(", "b", ")"}], " ", "pex2"}]}]}]], "Input",
+ CellChangeTimes->{{3.66818838300702*^9, 
+  3.668188409301179*^9}},ExpressionUUID->"1c68d759-bd40-4b3f-b72f-\
+0ef0f07874d3"],
+
+Cell["\<\
+We also noted that if two identical individuals are in the population, the \
+probability that the population goes extinct in the future is the same as if \
+two populations that were founded with a single individual each both went \
+extinct, meaning that \
+\>", "Text",
+ CellChangeTimes->{{3.668188412020735*^9, 3.668188453428049*^9}, 
+   3.7319453383444743`*^9, {3.731945464485389*^9, 3.7319454675574903`*^9}, {
+   3.73194564540026*^9, 
+   3.7319456462234907`*^9}},ExpressionUUID->"8c16dfcd-8077-40af-a883-\
+7730305f43ab"],
+
+Cell[BoxData[
+ RowBox[{"pex2", "\[Equal]", 
+  RowBox[{"pex1", "^", "2"}]}]], "Input",
+ CellChangeTimes->{{3.6681884550599527`*^9, 
+  3.668188460148272*^9}},ExpressionUUID->"f6257d2f-b236-49bc-9d38-\
+f38814f1038b"],
+
+Cell["So our full equation for the probability of extinction is: ", "Text",
+ CellChangeTimes->{{3.668188464147366*^9, 3.6681884674282312`*^9}, {
+  3.668188504637158*^9, 
+  3.668188511019339*^9}},ExpressionUUID->"ffc892a3-731b-443c-9053-\
+1a672c368de0"],
+
+Cell[BoxData[
+ RowBox[{"pex1", "\[Equal]", 
+  RowBox[{"d", " ", "+", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"1", "-", "b"}], ")"}], "*", "pex1"}], " ", "+", " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", "d"}], ")"}], 
+    RowBox[{"(", "b", ")"}], " ", 
+    RowBox[{"pex1", "^", "2"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.668188517363495*^9, 
+  3.6681885179230824`*^9}},ExpressionUUID->"b06c786e-bae5-4a10-a58c-\
+83edadf4466e"],
+
+Cell[TextData[{
+ "We can use ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " to solve this with the ",
+ StyleBox["Solve",
+  FontSlant->"Italic"],
+ " command. (",
+ StyleBox["Solve",
+  FontSlant->"Italic"],
+ " takes in two values: the equation we are solving and the variable we are \
+solving for.)"
+}], "Text",
+ CellChangeTimes->{{3.6681885201791697`*^9, 3.66818853365954*^9}, {
+  3.7319455155669203`*^9, 
+  3.7319455595506983`*^9}},ExpressionUUID->"f21d22d5-a4a0-4253-b66f-\
+061188dd39b7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{"pex1", "\[Equal]", 
+     RowBox[{"d", " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", "d"}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"1", "-", "b"}], ")"}], "*", "pex1"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", "d"}], ")"}], 
+       RowBox[{"(", "b", ")"}], " ", 
+       RowBox[{"pex1", "^", "2"}]}]}]}], ",", "pex1"}], "]"}], " ", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Remember", " ", "we", " ", "need", " ", "double", " ", "equal", " ", 
+    "signs", " ", "\"\<\[Equal]\>\"", " ", "for", " ", "the", " ", 
+    "equation"}], " ", "*)"}], " "}]], "Input",
+ CellChangeTimes->{{3.6681885371575737`*^9, 3.668188542125091*^9}, {
+  3.7319455747118473`*^9, 
+  3.731945601863649*^9}},ExpressionUUID->"f0ae965b-ff61-4807-99c7-\
+f6452e78f0e6"],
+
+Cell["\<\
+As we noted in class, there are two solutions to this equation. One is that \
+the probability of extinction is 1, the other is \
+\>", "Text",
+ CellChangeTimes->{{3.668188545314444*^9, 
+  3.668188580986165*^9}},ExpressionUUID->"b6464a00-4684-42af-b414-\
+498b87129c20"],
+
+Cell[BoxData[
+ RowBox[{"pex1", ":=", 
+  RowBox[{"d", "/", 
+   RowBox[{"(", 
+    RowBox[{"b", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", "d"}], ")"}]}], ")"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Here", " ", "we", " ", "use", " ", "the"}], " ", ":=", " ", 
+     RowBox[{
+     "so", " ", "that", " ", "we", " ", "can", " ", "treat", " ", "pex1", " ",
+       "as", " ", "a", " ", "function"}]}], " ", "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.668188570629529*^9, 
+  3.6681886151388206`*^9}},ExpressionUUID->"07511f35-45a9-4743-a573-\
+0131e72dd2f3"],
+
+Cell["\<\
+What does this all mean? When is the extinction risk exactly 1?
+Remember that the number of individuals left by a single adult is, on average, 
+(1-d) (1-b) + (1-d) b * 2 == (1-d) (1+b)\
+\>", "Text",
+ CellChangeTimes->{{3.6681887797597227`*^9, 3.668188912856697*^9}, {
+  3.7319473419038763`*^9, 
+  3.731947364681239*^9}},ExpressionUUID->"d8af3dd1-9a0d-43a6-a85e-\
+7d11ad4e6cc0"],
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", "d"}], ")"}], "*", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", "b"}], ")"}]}], "\[Equal]", "1"}], ",", "b"}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.668188773386036*^9, 3.668188796104327*^9}, {
+  3.6681889370073957`*^9, 3.668188952798699*^9}, {3.668188984141838*^9, 
+  3.668188984582664*^9}},ExpressionUUID->"46765833-0b4c-4a5c-b317-\
+a69dd836fabd"],
+
+Cell["\<\
+Substitute this result into pex1 and we find that the probability of \
+extinction would then be 1! \
+\>", "Text",
+ CellChangeTimes->{{3.668189007573496*^9, 3.668189027501223*^9}, {
+  3.6681890979331083`*^9, 3.6681891452461033`*^9}, {3.7319473700465527`*^9, 
+  3.731947376639188*^9}},ExpressionUUID->"27bcae63-ee67-4337-933b-\
+c247c923bb9d"],
+
+Cell[BoxData[
+ RowBox[{"pex1", "/.", 
+  RowBox[{"{", 
+   RowBox[{"b", "\[Rule]", 
+    RowBox[{"d", "/", 
+     RowBox[{"(", 
+      RowBox[{"1", "-", "d"}], ")"}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.668189002968218*^9, 
+  3.668189044807149*^9}},ExpressionUUID->"e22cb7e8-1e73-48a4-a0e9-\
+b77e0e354d5f"],
+
+Cell["\<\
+Conceptually, this means that if the death rate is too high then the \
+population is guaranteed to go extinct eventually (even if it gets \
+\[OpenCurlyDoubleQuote]lucky\[CloseCurlyDoubleQuote] at first).
+
+You can also see this graphically by making a plot of the extinction \
+probability. We also find that even when each individual leaves, on average, \
+more than one offspring there is still some positive probability that the \
+population will go extinct.\
+\>", "Text",
+ CellChangeTimes->{{3.668189149375677*^9, 3.668189215787698*^9}, 
+   3.7319461659439497`*^9},ExpressionUUID->"b4de9140-69db-4ae2-bbac-\
+4312ed7a5655"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"pex1", "/.", 
+    RowBox[{"d", "\[Rule]", ".1"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"b", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "1"}], "}"}]}], ",", " ", 
+   RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<b\>\"", ",", " ", "\"\<pex1\>\""}], "}"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.6681890610514927`*^9, 3.668189084357727*^9}, {
+  3.7319468309442205`*^9, 
+  3.731946831304355*^9}},ExpressionUUID->"a9a34f3a-9daf-4182-8a21-\
+9412d3674844"],
+
+Cell[CellGroupData[{
+
+Cell["How to Substitute ", "Subsubsection",
+ CellChangeTimes->{{3.7319461482390575`*^9, 3.7319461512387767`*^9}, {
+  3.731948848547722*^9, 
+  3.731948855731475*^9}},ExpressionUUID->"9e9f2d76-7efd-4d57-b7cd-\
+001ba2680855"],
+
+Cell[TextData[{
+ "The \[OpenCurlyDoubleQuote]slash-dot\[CloseCurlyDoubleQuote] notation \
+\[OpenCurlyDoubleQuote]",
+ StyleBox["/.",
+  FontWeight->"Bold"],
+ "\[CloseCurlyDoubleQuote] means to substitute. For example,"
+}], "Text",
+ CellChangeTimes->{{3.731945711903827*^9, 3.7319457747697587`*^9}, {
+  3.7319459853728046`*^9, 3.731945995388156*^9}, {3.7319461591591005`*^9, 
+  3.731946160478927*^9}, {3.7319463432340393`*^9, 
+  3.731946377761875*^9}},ExpressionUUID->"2ed6618e-b028-4c05-befd-\
+eeb41c50c6d2"],
+
+Cell[BoxData[
+ RowBox[{"y", " ", "+", " ", "z"}]], "Input",
+ CellChangeTimes->{{3.731945787365019*^9, 
+  3.7319458176420665`*^9}},ExpressionUUID->"b4a6f93a-c84f-4618-907b-\
+1fab6574a9f4"],
+
+Cell["\<\
+y and z are just empty placeholder symbols to Mathematica, and evaluating it \
+will just return y + z. But we can plug in values with \
+\[OpenCurlyDoubleQuote]./\[CloseCurlyDoubleQuote]. We can plug in one of the \
+values\
+\>", "Text",
+ CellChangeTimes->{{3.731945799697302*^9, 3.7319458775467463`*^9}, {
+  3.7319459084671574`*^9, 3.7319459607165422`*^9}, {3.731946410874468*^9, 
+  3.731946417810376*^9}},ExpressionUUID->"a4625857-cb2a-42f3-9072-\
+69c741d0060e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"y", " ", "+", " ", "z"}], " ", "/.", " ", 
+  RowBox[{"y", " ", "\[Rule]", " ", "1.3"}]}]], "Input",
+ CellChangeTimes->{{3.7319458848938475`*^9, 3.731945922507422*^9}, {
+  3.731946033390272*^9, 3.7319460389409127`*^9}, {3.73194607188524*^9, 
+  3.731946082917965*^9}},ExpressionUUID->"c008693b-4571-436f-8770-\
+39e0e09addb2"],
+
+Cell["Or, using a list, many values.", "Text",
+ CellChangeTimes->{{3.73194595156396*^9, 
+  3.731945972892034*^9}},ExpressionUUID->"5bc75e8c-cffb-4d55-b1a3-\
+fc1fd8d868cb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"y", "+", "z"}], " ", "/.", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"y", " ", "\[Rule]", " ", "1.3"}], ",", " ", 
+    RowBox[{"z", " ", "\[Rule]", " ", "37"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.731945974304467*^9, 3.7319459801408777`*^9}, {
+  3.731946016021455*^9, 
+  3.7319460960542316`*^9}},ExpressionUUID->"0a14024a-2445-4c6d-8dc9-\
+8f1025293907"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Question 1:", "Subsubsection",
+ CellChangeTimes->{{3.668347199666662*^9, 3.668347201175605*^9}, 
+   3.731882687081438*^9, 
+   3.731882772899211*^9},ExpressionUUID->"6df89615-a121-4826-be8f-\
+d8218c5c7f93"],
+
+Cell["\<\
+Substitute the parameters values b= 0.3, d=0.2 into our expression for pex1 \
+to calculate the extinction risk. (We will use this value later.)\
+\>", "Text",
+ CellChangeTimes->{{3.668347204892054*^9, 3.6683472171839867`*^9}, {
+  3.668347264181031*^9, 3.668347288244258*^9}, {3.6683473747477627`*^9, 
+  3.6683474163697577`*^9}, {3.731882692785041*^9, 3.731882706789916*^9}, {
+  3.731882775423134*^9, 3.731882791760901*^9}, {3.731882821870398*^9, 
+  3.731882841284752*^9}, {3.731949613373535*^9, 
+  3.73194961974044*^9}},ExpressionUUID->"fa52c440-396c-4de6-a993-\
+152946e0e07e"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["A stochastic model of population extinction", "Subsection",
+ CellChangeTimes->{{3.60615052275626*^9, 3.606150528241846*^9}, {
+  3.6681892478304577`*^9, 
+  3.668189258219874*^9}},ExpressionUUID->"76dcb00a-d029-466d-94ae-\
+e27b3c70730b"],
+
+Cell[TextData[{
+ "You will now use this same idea to simulate the growth of a rare \
+population, but using a random model. We write a ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " function for this."
+}], "Text",
+ CellChangeTimes->{{3.6681892674755917`*^9, 3.6681893159059753`*^9}, {
+  3.6683467750605717`*^9, 3.668346776665928*^9}, {3.7319483140918317`*^9, 
+  3.7319483655012965`*^9}, {3.731948408204563*^9, 3.731948429157692*^9}, {
+  3.7319484678222427`*^9, 
+  3.7319484921585426`*^9}},ExpressionUUID->"edf418d4-0300-43bf-8378-\
+219f2568cc5a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "This", " ", "function", " ", "takes", " ", "in", " ", "an", " ", 
+     "initial", " ", "population", " ", "size", " ", "n0"}], ",", " ", 
+    RowBox[{"simulates", " ", "one", " ", "generation", " ", "of", " ", 
+     RowBox[{"birth", "/", "reproduction"}], " ", "for", " ", "each", " ", 
+     "individual"}], ",", " ", 
+    RowBox[{
+    "then", " ", "outputs", " ", "the", " ", "new", " ", "population", " ", 
+     RowBox[{"size", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"updatePop", "[", "n0_", "]"}], ":=", 
+    RowBox[{"(", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"n", "=", "n0"}], ";", " ", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{
+        "Assign", " ", "the", " ", "variable", " ", "n", " ", "the", " ", 
+         "value", " ", "of", " ", "the", " ", "input"}], ",", " ", "n0"}], 
+       " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"survivors", "=", "0"}], ";", " ", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{
+        "We", " ", "will", " ", "add", " ", "\"\<survivors\>\"", " ", "one", 
+         " ", "at", " ", "a", " ", "time"}], ",", " ", 
+        RowBox[{
+        "so", " ", "we", " ", "must", " ", "start", " ", "with", " ", "0"}]}],
+        "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"RandomReal", "[", "]"}], ">", "d"}], ",", 
+          RowBox[{"survivors", "=", 
+           RowBox[{"survivors", "+", "1"}]}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}], ";", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"This", " ", "is", " ", "a", " ", "loop"}], ",", " ", 
+        RowBox[{
+        "for", " ", "each", " ", "individual", " ", "alive", " ", "at", " ", 
+         "the", " ", "beginning", " ", "of", " ", "the", " ", "year", " ", 
+         "we", " ", "\"\<flip\>\"", " ", "a", " ", "coin", " ", "to", " ", 
+         "decide", " ", "if", " ", "it", " ", "survives", " ", "or", " ", 
+         RowBox[{"not", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"pop", "=", "0"}], ";", " ", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Assign", " ", "the", " ", "new", " ", "variable", " ", "\"\<pop\>\"", 
+        " ", "the", " ", "value", " ", "of", " ", "0.", " ", "We", " ", 
+        "will", " ", "add", " ", "individuals", " ", "to", " ", "this"}], " ",
+        "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"Do", "[", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"RandomReal", "[", "]"}], "<", "b"}], ",", 
+          RowBox[{"pop", "=", 
+           RowBox[{"pop", "+", "2"}]}], ",", 
+          RowBox[{"pop", "=", 
+           RowBox[{"pop", "+", "1"}]}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "survivors"}], "}"}]}], "]"}], ";", " ", 
+      
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"This", " ", "is", " ", "another", " ", "loop"}], ",", " ", 
+        RowBox[{
+        "but", " ", "this", " ", "time", " ", "for", " ", "adding", " ", 
+         "new", " ", 
+         RowBox[{"births", ".", " ", "We"}], " ", "again", " ", 
+         "\"\<flip\>\"", " ", "coins", " ", "to", " ", "decide", " ", 
+         "whether", " ", "we", " ", "add", " ", "one", " ", "individual", " ", 
+         RowBox[{"(", 
+          RowBox[{
+          "if", " ", "they", " ", "do", " ", "not", " ", "give", " ", 
+           "birth"}], ")"}], " ", "or", " ", "two", " ", 
+         RowBox[{"(", 
+          RowBox[{"if", " ", "they", " ", "do", " ", "give", " ", "birth"}], 
+          " "}]}]}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"n", "=", "pop"}], ";", " ", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{
+        "Now", " ", "we", " ", "assign", " ", "the", " ", "new", " ", 
+         "population", " ", "size"}], ",", " ", "pop", ",", " ", 
+        RowBox[{
+        "to", " ", "our", " ", "original", " ", "variable", " ", "n"}]}], 
+       "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"report", " ", "the", " ", "output"}], " ", "*)"}], 
+      "\[IndentingNewLine]", "n"}], ")"}]}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{
+  3.6055464685221977`*^9, {3.605547276553116*^9, 3.605547278171289*^9}, {
+   3.605555039895844*^9, 3.605555225456573*^9}, {3.6055552863193817`*^9, 
+   3.605555291629259*^9}, {3.66818935444519*^9, 3.668189399714398*^9}, {
+   3.668189457645412*^9, 3.668189472596981*^9}, {3.668189527356572*^9, 
+   3.668189538354671*^9}, {3.6683467902310953`*^9, 3.6683469968279877`*^9}, {
+   3.7319475528507233`*^9, 3.7319475529943867`*^9}, {3.731948149283059*^9, 
+   3.731948251363835*^9}, {3.7319483021893854`*^9, 3.731948304164777*^9}, {
+   3.731948372374256*^9, 3.7319483738050613`*^9}},
+ CellLabel->
+  "In[168]:=",ExpressionUUID->"65ce2376-080c-44d7-a75b-c6bfeacfe6ed"],
+
+Cell["Here are some reasonable values for the parameters", "Text",
+ CellChangeTimes->{{3.6055553941706343`*^9, 3.605555401200427*^9}, {
+  3.668347004735358*^9, 3.6683470125025663`*^9}, {3.6683470612455883`*^9, 
+  3.66834706474129*^9}},ExpressionUUID->"1a83628b-a929-41b7-89e2-\
+f260246a05ae"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"b", "=", "0.3"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"d", "=", "0.2"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.605547293381393*^9, 3.605547298537263*^9}, {
+   3.605547332560384*^9, 3.605547342319099*^9}, {3.60555525146312*^9, 
+   3.605555252284163*^9}, {3.605555299039267*^9, 3.6055553303705263`*^9}, {
+   3.6055553797809143`*^9, 3.6055553817046127`*^9}, {3.668189410617498*^9, 
+   3.668189414417911*^9}, 3.668189486159176*^9, {3.668189626526005*^9, 
+   3.668189626878985*^9}},
+ CellLabel->
+  "In[169]:=",ExpressionUUID->"d83fd584-e6ec-49a7-8490-759b85c16cfa"],
+
+Cell[TextData[{
+ StyleBox["Note: as soon as we run the above code we\[CloseCurlyQuote]ll have \
+set explicit values for b and d. This means if you go back up and re-run the \
+\[OpenCurlyDoubleQuote]Calculations from class\[CloseCurlyDoubleQuote] \
+section it won\[CloseCurlyQuote]t work. Mathematica will try to use the \
+values 0.3 and 0.2 instead of the symbols b and d and will confuse itself. If \
+you want to remove the value from b or d and just have it be a symbol again \
+run Clear[b] or Clear[d].", "Subitem",
+  FontSlant->"Italic",
+  FontColor->RGBColor[
+   0.23137254901960785`, 0.23137254901960785`, 0.23137254901960785`]],
+ StyleBox[" ",
+  FontColor->RGBColor[
+   0.23137254901960785`, 0.23137254901960785`, 0.23137254901960785`]]
+}], "Text",
+ CellChangeTimes->{{3.731946856736198*^9, 3.7319468658638124`*^9}, {
+  3.731946907751953*^9, 3.731947010034417*^9}, {3.73194705017083*^9, 
+  3.731947144331833*^9}, {3.7319485320317864`*^9, 
+  3.731948560582984*^9}},ExpressionUUID->"1abd02a3-572c-43ee-ad1b-\
+986548268865"],
+
+Cell["\<\
+Try out the function, this iterates the two population sizes over one \
+generation. You can input this line repeatedly to see how often you get \
+different outputs.\
+\>", "Text",
+ CellChangeTimes->{{3.605555419076289*^9, 3.605555438449226*^9}, {
+  3.6683470758535557`*^9, 
+  3.6683470957820177`*^9}},ExpressionUUID->"40f01491-db07-4a5b-bbf6-\
+d2341a35f537"],
+
+Cell[BoxData[
+ RowBox[{"updatePop", "[", "1", "]"}]], "Input",
+ CellChangeTimes->{{3.605547255354088*^9, 3.605547259416827*^9}, {
+   3.6681894216848097`*^9, 3.668189443681382*^9}, 3.668189634186882*^9, {
+   3.731947555905283*^9, 3.7319475560331087`*^9}},
+ CellLabel->
+  "In[174]:=",ExpressionUUID->"598992e5-bc81-4d57-af75-5bbe884d2bfc"],
+
+Cell["\<\
+We would also like to run this over many generations. Here, we start with 1 \
+individual and then make a table of 100 generations of output. Many runs will \
+show all zeros, which means the population immediately went extinct. You may \
+have to re-run the simulation 10 times or so in order to see a population \
+survive.\
+\>", "Text",
+ CellChangeTimes->{{3.605555449676394*^9, 3.6055555245008583`*^9}, {
+  3.6681895580491657`*^9, 3.668189587575302*^9}, {3.731947664242985*^9, 
+  3.7319476885555596`*^9}},ExpressionUUID->"432fca02-d9ed-49b8-82fa-\
+dabf814f545a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n", "=", "1"}], ";", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"n", "=", 
+     RowBox[{"updatePop", "[", "n", "]"}]}], ",", 
+    RowBox[{"{", "100", "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6681896001851463`*^9, 3.668189615183288*^9}, {
+  3.7319475584663153`*^9, 3.7319475586501365`*^9}},
+ CellLabel->
+  "In[183]:=",ExpressionUUID->"9e9c72b3-f417-454a-a3a5-af34665a6d7c"],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", "%", "]"}]], "Input",
+ CellChangeTimes->{{3.890330059616736*^9, 3.890330062337263*^9}},
+ CellLabel->
+  "In[184]:=",ExpressionUUID->"b7c8a508-a326-44da-855b-d164874a587b"],
+
+Cell[CellGroupData[{
+
+Cell["Question 2:", "Subsubsection",
+ CellChangeTimes->{{3.668347199666662*^9, 3.668347201175605*^9}, 
+   3.731882687081438*^9},ExpressionUUID->"5c6ee749-c3fa-44d5-93ac-\
+b371067ac0bf"],
+
+Cell[TextData[{
+ "Start with the parameters ",
+ StyleBox["b= 0.3, d=0.2 ",
+  FontSlant->"Italic"],
+ "and run the simulation for 200 generations. Repeat this 10 times, \
+outputting the final population size for each run. How many times did the \
+population go extinct by 200 generations? Compare this to what our ",
+ StyleBox["pex1",
+  FontSlant->"Italic"],
+ " formula predicted. "
+}], "Text",
+ CellChangeTimes->{{3.668347204892054*^9, 3.6683472171839867`*^9}, {
+  3.668347264181031*^9, 3.668347288244258*^9}, {3.6683473747477627`*^9, 
+  3.6683474163697577`*^9}, {3.731882692785041*^9, 3.731882706789916*^9}, {
+  3.731947849909507*^9, 3.731947861341687*^9}, {3.7319479714240837`*^9, 
+  3.731948031063656*^9}},ExpressionUUID->"ddea42a9-6257-4ea3-a62a-\
+ac725ff7157f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "Subsubsection",
+ CellChangeTimes->{{3.668347351503057*^9, 3.668347353619014*^9}, 
+   3.731882689622849*^9, 
+   3.7951882315525*^9},ExpressionUUID->"66040883-65ae-4bbf-a2e6-bff4d93d8292"],
+
+Cell["\<\
+
+\
+\>", "Text",
+ CellChangeTimes->{{3.668347424748475*^9, 3.668347464865432*^9}, {
+   3.668347534636456*^9, 3.668347603575571*^9}, {3.731882725002431*^9, 
+   3.731882728472529*^9}, {3.731947806822236*^9, 3.731947812069192*^9}, 
+   3.795188227045577*^9},ExpressionUUID->"6137ba52-8557-4179-92fe-\
+2895a19397ed"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["If you want more: ", "Subsubsection",
+ CellChangeTimes->{{3.668347499827115*^9, 3.668347504737131*^9}, {
+  3.731882657283389*^9, 
+  3.731882664229265*^9}},ExpressionUUID->"b6a73d2e-cf23-44c3-8ca2-\
+86fd08d2182c"],
+
+Cell[TextData[{
+ "We used the ",
+ StyleBox["Table",
+  FontSlant->"Italic"],
+ " command to run the simulation for a fixed number of generations. Write a \
+loop using the ",
+ StyleBox["While",
+  FontSlant->"Italic"],
+ " command to run the simulation until either (a) the population goes extinct \
+or (b) the population size reaches 500."
+}], "Text",
+ CellChangeTimes->{{3.6683475191463623`*^9, 3.6683475243528843`*^9}, {
+  3.668347612903673*^9, 
+  3.6683476562712297`*^9}},ExpressionUUID->"3409f462-2704-4711-b5ab-\
+a261f9e2dcac"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1150, 889},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.2 for Mac OS X x86 (64-bit) (January 30, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2ff00432-8c7e-4b76-a68a-cc97ec920f0a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 244, 4, 67, "Section",ExpressionUUID->"3c64fda3-418b-41c7-93b0-b10fd77c456f"],
+Cell[CellGroupData[{
+Cell[849, 30, 151, 3, 54, "Subsection",ExpressionUUID->"b4d99cf9-8b0e-4e1c-9524-2f804b5e9208"],
+Cell[1003, 35, 995, 28, 242, "Text",ExpressionUUID->"7ee3d98a-b9d1-4bcc-b833-dcd685fabbce"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2035, 68, 267, 4, 54, "Subsection",ExpressionUUID->"9ce326e8-be3a-4c4f-b44e-bb5a1c80c50b"],
+Cell[2305, 74, 474, 9, 81, "Text",ExpressionUUID->"9b75cade-03c3-4965-9fa6-e1cc23549e8e"],
+Cell[2782, 85, 565, 10, 58, "Text",ExpressionUUID->"6fe34804-fa55-4181-9711-11f0f4616097"],
+Cell[3350, 97, 479, 14, 30, "Input",ExpressionUUID->"1c68d759-bd40-4b3f-b72f-0ef0f07874d3"],
+Cell[3832, 113, 532, 10, 58, "Text",ExpressionUUID->"8c16dfcd-8077-40af-a883-7730305f43ab"],
+Cell[4367, 125, 213, 5, 30, "Input",ExpressionUUID->"f6257d2f-b236-49bc-9d38-f38814f1038b"],
+Cell[4583, 132, 252, 4, 35, "Text",ExpressionUUID->"ffc892a3-731b-443c-9053-1a672c368de0"],
+Cell[4838, 138, 507, 15, 30, "Input",ExpressionUUID->"b06c786e-bae5-4a10-a58c-83edadf4466e"],
+Cell[5348, 155, 496, 16, 35, "Text",ExpressionUUID->"f21d22d5-a4a0-4253-b66f-061188dd39b7"],
+Cell[5847, 173, 883, 24, 30, "Input",ExpressionUUID->"f0ae965b-ff61-4807-99c7-f6452e78f0e6"],
+Cell[6733, 199, 277, 6, 35, "Text",ExpressionUUID->"b6464a00-4684-42af-b414-498b87129c20"],
+Cell[7013, 207, 563, 15, 30, "Input",ExpressionUUID->"07511f35-45a9-4743-a573-0131e72dd2f3"],
+Cell[7579, 224, 387, 8, 81, "Text",ExpressionUUID->"d8af3dd1-9a0d-43a6-a85e-7d11ad4e6cc0"],
+Cell[7969, 234, 469, 13, 30, "Input",ExpressionUUID->"46765833-0b4c-4a5c-b317-a69dd836fabd"],
+Cell[8441, 249, 350, 7, 35, "Text",ExpressionUUID->"27bcae63-ee67-4337-933b-c247c923bb9d"],
+Cell[8794, 258, 310, 9, 30, "Input",ExpressionUUID->"e22cb7e8-1e73-48a4-a0e9-b77e0e354d5f"],
+Cell[9107, 269, 633, 12, 104, "Text",ExpressionUUID->"b4de9140-69db-4ae2-bbac-4312ed7a5655"],
+Cell[9743, 283, 618, 17, 30, "Input",ExpressionUUID->"a9a34f3a-9daf-4182-8a21-9412d3674844"],
+Cell[CellGroupData[{
+Cell[10386, 304, 222, 4, 45, "Subsubsection",ExpressionUUID->"9e9f2d76-7efd-4d57-b7cd-001ba2680855"],
+Cell[10611, 310, 506, 11, 35, "Text",ExpressionUUID->"2ed6618e-b028-4c05-befd-eeb41c50c6d2"],
+Cell[11120, 323, 187, 4, 30, "Input",ExpressionUUID->"b4a6f93a-c84f-4618-907b-1fab6574a9f4"],
+Cell[11310, 329, 472, 9, 58, "Text",ExpressionUUID->"a4625857-cb2a-42f3-9072-69c741d0060e"],
+Cell[11785, 340, 358, 7, 30, "Input",ExpressionUUID->"c008693b-4571-436f-8770-39e0e09addb2"],
+Cell[12146, 349, 171, 3, 35, "Text",ExpressionUUID->"5bc75e8c-cffb-4d55-b1a3-fc1fd8d868cb"],
+Cell[12320, 354, 399, 10, 30, "Input",ExpressionUUID->"0a14024a-2445-4c6d-8dc9-8f1025293907"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12756, 369, 211, 4, 45, "Subsubsection",ExpressionUUID->"6df89615-a121-4826-be8f-d8218c5c7f93"],
+Cell[12970, 375, 586, 10, 35, "Text",ExpressionUUID->"fa52c440-396c-4de6-a993-152946e0e07e"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13605, 391, 241, 4, 54, "Subsection",ExpressionUUID->"76dcb00a-d029-466d-94ae-e27b3c70730b"],
+Cell[13849, 397, 553, 12, 35, "Text",ExpressionUUID->"edf418d4-0300-43bf-8378-219f2568cc5a"],
+Cell[14405, 411, 5034, 113, 368, "Input",ExpressionUUID->"65ce2376-080c-44d7-a75b-c6bfeacfe6ed"],
+Cell[19442, 526, 292, 4, 35, "Text",ExpressionUUID->"1a83628b-a929-41b7-89e2-f260246a05ae"],
+Cell[19737, 532, 613, 12, 52, "Input",ExpressionUUID->"d83fd584-e6ec-49a7-8490-759b85c16cfa"],
+Cell[20353, 546, 1028, 19, 77, "Text",ExpressionUUID->"1abd02a3-572c-43ee-ad1b-986548268865"],
+Cell[21384, 567, 367, 8, 35, "Text",ExpressionUUID->"40f01491-db07-4a5b-bbf6-d2341a35f537"],
+Cell[21754, 577, 337, 6, 30, "Input",ExpressionUUID->"598992e5-bc81-4d57-af75-5bbe884d2bfc"],
+Cell[22094, 585, 572, 10, 58, "Text",ExpressionUUID->"432fca02-d9ed-49b8-82fa-dabf814f545a"],
+Cell[22669, 597, 423, 11, 30, "Input",ExpressionUUID->"9e9c72b3-f417-454a-a3a5-af34665a6d7c"],
+Cell[23095, 610, 210, 4, 30, "Input",ExpressionUUID->"b7c8a508-a326-44da-855b-d164874a587b"],
+Cell[CellGroupData[{
+Cell[23330, 618, 185, 3, 45, "Subsubsection",ExpressionUUID->"5c6ee749-c3fa-44d5-93ac-b371067ac0bf"],
+Cell[23518, 623, 765, 16, 58, "Text",ExpressionUUID->"ddea42a9-6257-4ea3-a62a-ac725ff7157f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24320, 644, 196, 3, 45, "Subsubsection",ExpressionUUID->"66040883-65ae-4bbf-a2e6-bff4d93d8292"],
+Cell[24519, 649, 320, 8, 58, "Text",ExpressionUUID->"6137ba52-8557-4179-92fe-2895a19397ed"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24876, 662, 218, 4, 45, "Subsubsection",ExpressionUUID->"b6a73d2e-cf23-44c3-8ca2-86fd08d2182c"],
+Cell[25097, 668, 528, 14, 58, "Text",ExpressionUUID->"3409f462-2704-4711-b5ab-a261f9e2dcac"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
